@@ -1,0 +1,9 @@
+.bloque {
+  padding: 20px;
+  margin: 20px;
+  background-color: lightblue;
+}
+
+.oculto {
+  display: none;
+}

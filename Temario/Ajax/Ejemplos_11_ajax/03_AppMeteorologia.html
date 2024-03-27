@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/AppMeteorologia.css">
+    <script src="js/AppMeteorologia.js"></script>
+    <script>
+      // Garantizamos que la función se va a ejecutar después de cargar el DOM
+      $(document).ready(appJSmeteorologia);
+    </script>
+</head>
+
+<body>
+  <div class="api">
+    <div class="container">
+      🌞 Esta demo necesita una Key de la API de OpenWeather.
+      <a target="_blank" href="https://home.openweathermap.org/users/sign_up">Obtén aquí la tuya gratis!</a>
+    </div>
+  </div>
+  <section class="top-banner">
+    <div class="container">
+      <h1 class="heading">App de meteorología</h1>
+      <form>
+        <input type="text" placeholder="Busca una ciudad" autofocus>
+        <button type="submit">Enviar</button>
+        <span class="msg"></span>
+      </form>
+    </div>
+  </section>
+  <section class="ajax-section">
+    <div class="container">
+      <ul class="cities"></ul>
+    </div>
+  </section>
+</body>
+
+</html>

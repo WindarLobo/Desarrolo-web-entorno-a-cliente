@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarea 1. Ejercicio 4.</title>
+    <script src="01_objetos.js"></script>
+  </head>
+
+  <body>
+    <script>
+      // Función que asigna una línea de clase a cada alumno según la inicial de su apellido.
+      function obtenerLineaClase(alumnos) {
+        for (var alumno in alumnos) {
+          // Obtengo la primera letra del apellido con charAt(0).
+          const inicialApellido = alumnos[alumno].apellido
+            .charAt(0)
+            .toUpperCase();
+
+          // Asigno una línea de clase según ciertos rangos de letras.
+          if (inicialApellido >= "A" && inicialApellido <= "I") {
+            alumnos[alumno].linea = "A";
+          } else if (inicialApellido >= "J" && inicialApellido <= "Q") {
+            alumnos[alumno].linea = "B";
+          } else {
+            alumnos[alumno].linea = "C";
+          }
+        }
+      }
+
+      // Función que calcula la media de edad y el número total de alumnos para una línea de clase específica.
+      function calcularMediaEdadPorLineaClase(alumnos, linea) {
+        //inicializo dos variables
+        let sumaEdades = 0;
+        let totalAlumnos = 0;
+        const añoActual = new Date().getFullYear();
+        //Utilizo un bucle for para iterar sonbre el objecto alumno
+        for (var alumno in alumnos) {
+          //Verifico si la propiedad linea del alumno actual es igual a la línea de clase.
+          if (alumnos[alumno].linea === linea) {
+            sumaEdades += añoActual - alumnos[alumno].añoNacimiento;
+            totalAlumnos++;
+          }
+        }
+
+        // Verifico si hay alumnos en la línea.
+        if (totalAlumnos > 0) {
+          //Retorno el totalAlumnos y la mediaEdad
+          return {
+            totalAlumnos,
+            mediaEdad: sumaEdades / totalAlumnos,
+          };
+        } else {
+          //Si no hay alumno retorna 0
+          return {
+            totalAlumnos: 0,
+            mediaEdad: 0,
+          };
+        }
+      }
+
+      //Defino  un array lineaClaseTotal con las letras de lineaClase
+      const lineaClaseTotal = ["A", "B", "C"];
+
+      //Muestro el documento en html
+      document.write(
+        `<strong>Número de alumnos y media de edad por línea de clase:</strong><br>`
+      );
+
+      //Obtengo la linea de clase de los alumno.
+      obtenerLineaClase(registroAlumnos);
+
+      //Inicializo un for in para iterar sobre cada lineaClaseTotal
+      for (const linea of lineaClaseTotal) {
+        //Utilizo la función calcularMediaEdadPorLineaClase para obtener el número totalAlumnos y la mediaEdad.
+        const { totalAlumnos, mediaEdad } = calcularMediaEdadPorLineaClase(
+          registroAlumnos,
+          linea
+        );
+        //Imprimo la informacion.
+        document.write(
+          `Línea ${linea}: ${totalAlumnos} alumno,Media de Edad: ${mediaEdad.toFixed(
+            2
+          )}años<br>`
+        );
+      }
+
+      //Obtengo las notas de Matemáticas y Historia del objeto HistorialAlumno.
+      const notasMatematicas = HistorialAlumno.asignaturas[0].notas;
+      const notasHistoria = HistorialAlumno.asignaturas[1].notas;
+
+      //Imprimo las notas del alumno.
+      document.write(
+        `<br><strong>Notas de  ${HistorialAlumno.alumno.nombre} </strong><br>
+                Tercera Nota de Matemáticas:
+                 ${notasMatematicas[2]} <br>
+                Cuarta Nota de Historia:
+                 ${notasHistoria[3]}`
+      );
+    </script>
+  </body>
+</html>

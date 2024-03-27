@@ -1,0 +1,16 @@
+
+#miLista {
+  list-style-type: none; 
+  padding: 0;
+}
+
+#miLista li {
+  padding: 10px;
+  margin: 5px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+#miLista li:hover {
+  background-color: rgb(240, 128, 227);
+}

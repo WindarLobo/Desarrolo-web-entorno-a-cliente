@@ -1,0 +1,13 @@
+table {
+  margin: auto;
+}
+
+/* Estilo para la sección thead */
+thead {
+  background-color: lightblue;
+}
+
+/* Estilo para la sección tbody */
+tbody {
+  background-color: lightgreen;
+}

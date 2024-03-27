@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplo getElementById</title>
+  </head>
+
+  <body>
+    <p id="texto_color">Texto a color</p>
+    <p id="texto_negro">Texto sin color</p>
+
+    <script>
+      //DOM
+      /* 1.Escribe un código Javascript que pida un color al usuario y para pintar de ese color el “Texto a color”. (Pista: elemento.style.color)*/
+      document.addEventListener("DOMContentLoaded", function () {
+        var color = prompt("Por favor ingresa un color  (por ejemplo: 'red'):");
+        var texto = document.getElementById("texto_color");
+        texto.style.color = color;
+      });
+      /* 2.Crea una función JavaScript en el código HTML anterior para que introduzca un botón (<button>) que no estaba en el código (pista: utiliza la propiedad innerHTML).*/
+      function añadirBoton() {
+        var boton = document.createElement("button");
+        boton.innerHTML = "Añdiendo un botón";
+        document.body.appendChild(boton);
+
+        /*3.Modifica la función anterior, para que además saque con un aviso el número de caracteres de texto de la etiqueta con id=”texto_negro”.*/
+        var str = document.getElementById("texto_negro").textContent;
+        var caracteres = str.length;
+        alert("La cadena consta de " + caracteres + " caracteres.");
+      }
+      /*4.	Modifica de nuevo la función anterior, para que pinte en el documento HTML el nombre del archivo
+    (pista: utiliza la propiedad document.URL para obtener el nombre del archivo con el path completo).*/
+
+      var nombreArchivo = document.createElement("p");
+      nombreArchivo.innerHTML = "Nombre del archivo : " + document.URL;
+      document.body.appendChild(nombreArchivo);
+      añadirBoton();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarea 1. Ejercicio 3.</title>
+  </head>
+
+  <body>
+    <script>
+      // Utilizo una función constructora para la clase Alumno.
+      function Alumno(
+        nombre,
+        apellido,
+        añoDeNacimiento,
+        haCompletadoLaInscripción
+      ) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.añoDeNacimiento = añoDeNacimiento;
+        this.haCompletadoLaInscripción = haCompletadoLaInscripción;
+
+        // Agrego el método averiguarLineaClase.
+        this.averiguarLineaClase = function () {
+          // Obtengo la inicial del apellido y la convierto a mayúsculas.
+          const inicialApellido = this.apellido.charAt(0).toUpperCase();
+          // Utilizo una estructura condicional para determinar la línea de clase.
+          if (inicialApellido >= "A" && inicialApellido <= "I") {
+            return "A"; // La línea A abarca desde A hasta I.
+          } else if (inicialApellido >= "J" && inicialApellido <= "Q") {
+            return "B"; // La línea B abarca desde J hasta Q.
+          } else {
+            return "C"; // La línea C abarca desde R hasta Z.
+          }
+        };
+      }
+      //Creo un array registroAlumnos
+      let registroAlumnos = [];
+
+      // Utilizo una función para crear las instancias de Alumno y almacenarlas en registroAlumnos.
+      function registroDeAlumno() {
+        // Creo instancias de Alumno y las añado al array registroAlumnos.
+        const alumno1 = new Alumno("Windar", "Garces", 1993, true);
+        const alumno2 = new Alumno("Maria", "lopez", 1999, false);
+        const alumno3 = new Alumno("Pedro", "Medez", 2002, true);
+        const alumno4 = new Alumno("Pedro", "Diaz", 2012, true);
+
+        //registroAlumnos almacena los elementos.
+        registroAlumnos = [alumno1, alumno2, alumno3, alumno4];
+      }
+
+      document.write(`Registro de Alumnos: </br></br>`);
+      //Llamo a los  método.
+      registroDeAlumno();
+
+      //Utilizo  un bucle for of para iterar sobre cada elemento del arreglo registroAlumnos.
+      for (const alumno of registroAlumnos) {
+        // Verifico si el alumno ha completado la inscripción.
+        if (alumno.haCompletadoLaInscripción) {
+          // Utilizo template literals para una presentación más legible.
+          document.write(
+            `${alumno.nombre} ${
+              alumno.apellido
+            } se ha inscrito en la asignatura y pertenece a la Línea ${alumno.averiguarLineaClase()}.<br><br>`
+          );
+        } else {
+          document.write(
+            `${alumno.nombre} ${alumno.apellido} no ha completado la inscripción.<br><br>`
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

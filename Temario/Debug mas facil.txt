@@ -1,0 +1,2 @@
+  /*  alumnos[alumno].apellido = "lobo";
+          console.log(alumno + ":" + JSON.stringify(alumnos));*/

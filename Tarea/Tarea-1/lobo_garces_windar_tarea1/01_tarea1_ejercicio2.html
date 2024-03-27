@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarea 1. Ejercicio 2.</title>
+  </head>
+  <body>
+    <script>
+      // Declaro una función para calcular el impuesto al pagar.
+      function calcularImpuesto(salario) {
+        if (salario < 50000) {
+          return 0; //Si el salario es menor de 50000, no hay impuestos.
+        } else if (salario <= 100000) {
+          return salario * 0.15; //Si el salario está entre 50000 y 100000,impuesto del 15%.
+        } else {
+          return salario * 0.25; //Si el salario es mayores a 100000,  impuesto del 25%.
+        }
+      }
+
+      //función solicitarSalario para manejar la entrada del usuario y validar que se ingrese un valor numérico válido.
+      function solicitarSalario() {
+        let salarioAnual;
+
+        while (isNaN(salarioAnual)) {
+          salarioAnual = parseFloat(prompt("Ingrese su salario anual:"));
+
+          if (isNaN(salarioAnual)) {
+            alert(
+              "Por favor, ingrese un valor numérico válido para el salario anual."
+            );
+            continue;
+          }
+        }
+        return salarioAnual;
+      }
+
+      // CalculoDeImpuestoAlPagar utilizando las funciones creadas
+      const salarioAnual = solicitarSalario();
+      const impuesto = calcularImpuesto(salarioAnual);
+
+      // Muestro la información del salarioAnual y el impuesto al pagar
+      if (impuesto === 0) {
+        console.log(`Su salario es ${salarioAnual} y no hay impuestos`);
+      } else {
+        console.log(
+          `Su salario es ${salarioAnual} y el impuesto a pagar es ${impuesto}`
+        );
+      }
+    </script>
+  </body>
+</html>

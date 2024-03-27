@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p id="pantalla"></p>
+    <script>
+      /*1.Crea un script que te permita navegar entre los últimos 3 enlaces del historial de navegación. */
+      alert("URLs del historial: " + history.length);
+      function ir() {
+        var numero = window.history;
+        if (numero.length >= 3) {
+          history.go(numero);
+          /*2.	Si el historial se encuentra borrado, deberá aparecer un mensaje con el siguiente texto: “No hay enlaces en el historial”.*/
+        } else {
+          alert("No hay enlaces en el historial.");
+        }
+      }
+      /*3.Crea un programa en Javascript que te indique en todo momento el tamaño de la ventana cuando haces click en un botón.*/
+
+      function pantalla() {
+        var anchoVentana = window.innerWidth;
+        var altoVentana = window.innerHeight;
+        var texto = `El tamaño de la ventana es:  ${anchoVentana} x  ${altoVentana}`;
+        document.getElementById("pantalla").innerHTML = texto;
+      }
+      /*4.	Realiza una página web con un botón que cuando se presione,
+      se genera automáticamente un valor aleatorio entre 0 y 2.
+      Si se genera el 0 llamar al webmail de Outlook, si se genera un 1 llamar
+      a gmail en caso de generarse un 2 llamar a yahoo. (Pistas: Math.random() y window.location)*/
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+
+      function redirectToWebmail() {
+        var randomNumber = getRandomInt(3);
+        if (randomNumber === 0) {
+          window.location.href = "https://www.google.com";
+        } else if (randomNumber === 1) {
+          window.location.href = "https://www.Outlook.com";
+        } else {
+          window.location.href = "https://www.yahoo.com";
+        }
+      }
+    </script>
+
+    <button onclick="ir()">Ir a una página</button>
+    <button onclick="pantalla()">Tamaño d ventana</button>
+    <button onclick="redirectToWebmail()">pagina web</button>
+  </body>
+</html>

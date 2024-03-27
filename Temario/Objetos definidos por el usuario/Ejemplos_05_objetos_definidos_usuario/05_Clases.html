@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clases</title>
+</head>
+
+<body>
+    <p id="coche1"></p>
+    <p id="coche2"></p>
+    <p id="coche3"></p>
+    <script>
+        /*
+        Se puede crear una clase con la palabra reservada class,
+        asignando las propiedades dentro de un método llamando constructor()
+
+        Cualquier clase tiene que estar declarada antes de usarse
+       */
+
+        class Coche {
+            // método constructor. Este es único (sólo puede haber uno por clase)
+            // y declaramos los nombres de las propiedades que compartirán todas
+            // las instancias – precedidas por la palabra clave this
+            constructor(mar) {
+                // se crea una propiedad
+                this._marca = mar;
+            }
+            // Un método
+            presentar() {
+                return "Tengo un " + this.marca;
+            }
+
+            // métodos get / set para la propiedad (estrictamente no son métodos)
+            // Propiedades personalizadas que no se ajusten a las definidas en
+            // el constructor. Son una "propiedad computada", es decir, que para
+            // resolver el valor de la se necesita resolver una función
+            get marca() {
+                return this._marca;
+            }
+            set marca(x) {
+                this._marca = x;
+            }
+            /*
+            se utiliza habitualmente un guión bajo como notación para indicar que
+            la propiedad es privada así se distingue la propiedad del método getter / setter
+            */
+
+            // Método estático (solamente se puede invocar sobre la clase, no sobre una instancia)
+            static hola() {
+                return "¡Hola!";
+            }
+        }
+
+        Coche.hola(); // Invocamos sobre la clase, no sobre una instancia..
+
+        // Herencia: se genera una subclase con la palabra reservada extends
+        class Modelo extends Coche {
+            constructor(mar, mod) {
+                super(mar);
+                this.modelo = mod;
+            }
+            mostrar() {
+                return this.presentar() + ', es un ' + this.modelo;
+            }
+        }
+
+
+        let miCoche = new Coche("Ford");
+        document.getElementById("coche1").innerHTML = miCoche.presentar();
+
+        miCoche = new Modelo("Ford", "Mustang");
+        document.getElementById("coche2").innerHTML = miCoche.mostrar();
+
+        miCoche = new Coche("Ford");
+        miCoche.marca = "Volvo"; // sin guión bajo
+        document.getElementById("coche3").innerHTML = miCoche.marca; // utiliza el getter
+    </script>
+</body>
+
+</html>
