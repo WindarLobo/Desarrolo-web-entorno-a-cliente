@@ -1,0 +1,19 @@
+.lista-usuarios {
+  margin: auto;
+  width: 50%;
+}
+.titulo-centrado {
+  text-align: center;
+}
+.lista-usuarios th,
+.lista-usuarios td {
+  border: 1px solid black;
+  text-align: center;
+  color: rgb(5, 5, 5);
+  background-color: rgb(255, 255, 255);
+}
+
+.lista-usuarios th {
+  background-color: rgb(201, 151, 151);
+  padding: 25px;
+}

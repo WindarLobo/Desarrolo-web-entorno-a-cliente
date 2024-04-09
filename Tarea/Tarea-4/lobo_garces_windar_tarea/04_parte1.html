@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Página de Tareas</title>
+    <link rel="stylesheet" type="text/css" href="clima.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="04_parte1.js"></script>
+  </head>
+  <body>
+    <div id="contenido">
+      <h2>Ciudades disponibles</h2>
+      <ul>
+        <li class="lugar" data-latitud="42.878213" data-longitud="-8.544844">
+          Santiago de Compostela
+        </li>
+        <li class="lugar" data-latitud="43.362343" data-longitud="-8.411540">
+          A Coruña
+        </li>
+        <li class="lugar" data-latitud="42.240599" data-longitud="-8.720727">
+          Vigo
+        </li>
+      </ul>
+
+      <h2>Clima</h2>
+      <input
+        type="text"
+        id="entradaBusqueda"
+        placeholder="Ingresa una ciudad"
+      />
+      <button id="botonBusqueda">Buscar Clima</button>
+      <div id="infoClima" hidden>
+        <p>Clima para <span id="nombreCiudad"></span></p>
+        <p>Temperatura: <span id="temperatura"></span></p>
+        <p>Condiciones: <span id="condiciones"></span></p>
+      </div>
+    </div>
+  </body>
+</html>

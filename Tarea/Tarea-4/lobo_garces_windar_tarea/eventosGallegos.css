@@ -1,0 +1,47 @@
+.eventos-gallegos {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  #city-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .evento {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px #ccc;
+    margin-top: 20px;
+  }
+  
+  h3 {
+    color: #0078d4;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  p {
+    color: #555;
+    font-size: 1rem;
+  }
+  

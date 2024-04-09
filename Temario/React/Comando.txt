@@ -1,0 +1,1 @@
+npx create-react-app ejercicio-1 te vas a la carpeta y cd ejercicio-1 y rpm star
