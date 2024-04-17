@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="juego.css" />
+    <title>El Rápido</title>
+  </head>
+  <body>
+    <!-- PANTALLA 0: DATOS DEL JUGADOR -->
+    <div class="pantalla-juego">
+      <div class="juego-titulo"><h2>Juego "El Rápido"</h2></div>
+      <div class="juego-info">
+        <p>
+          Pulsa en nueve casillas durante una cuenta atrás. Al finalizar la
+          cuenta atrás, las casillas con pulsaciones repetidas se sumarán y las
+          no repetidas se restarán.<br /><br />
+          ¡Consigue la máxima puntuación y lidera la clasificación!
+        </p>
+      </div>
+      <div class="juego-titulo">
+        <h3>Introduce tus datos para registrar tu puntuación</h3>
+      </div>
+      <form>
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Escribe tu nombre"
+        />
+        <label for="dni">DNI/NIF</label>
+        <input
+          type="text"
+          name="dni"
+          id="dni"
+          placeholder="Introduce tu DNI (con letra)"
+        />
+      </form>
+      <div class="btns-navegacion">
+        <button type="submit" id="btn-jugar" class="btn-siguiente">
+          Jugar >>
+        </button>
+      </div>
+      <ul id="errores" style="display: none; color: red; margin: 20px"></ul>
+    </div>
+
+    <!-- PANTALLA 1: JUEGO -->
+    <div class="pantalla-juego">
+      <div class="juego-titulo"><h2>Juego "El Rápido"</h2></div>
+      <div id="temporizador"></div>
+      <div class="juego-cuadricula">
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+        <div class="cuadro"></div>
+      </div>
+
+      <div id="score"></div>
+    </div>
+
+    <!-- PANTALLA 2: CLASIFICACIÓN -->
+    <div class="pantalla-juego">
+      <table id="tabla-clasificacion" class="tabla-clasificacion"></table>
+
+      <div class="btns-navegacion">
+        <button id="btn-finalizar" class="btn-previo">Volver a jugar</button>
+      </div>
+    </div>
+
+    <script src="juego.js"></script>
+  </body>
+</html>

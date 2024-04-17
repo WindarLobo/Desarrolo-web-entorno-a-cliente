@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="contact_form">
+      <div class="formulario">
+        <h1>Formulario de contacto</h1>
+        <h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
+        <form>
+          <label>Nombre<span class="obligatorio">*</span></label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre"
+          /><br />
+          <label>Apellido<span class="obligatorio">*</span></label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            placeholder="Escribe tu apellido"
+          /><br />
+          <label
+            >Edad <span class="obligatorio">*</span
+            ><input
+              type="number"
+              placeholder="Escribe tu Edad"
+              id="edad" /></label
+          ><br />
+          <label
+            >Telefono<input
+              type="number"
+              id="telefono"
+              placeholder="Escribe tu Telefono"
+            /> </label
+          ><br />
+          <label
+            >Email<input
+              type="text"
+              id="email"
+              placeholder="Escribe tu correo"
+            /> </label
+          ><br />
+          <label>Sitio web </label>
+          <input
+            type="url"
+            id="web"
+            placeholder="Escribe la URL de tu web"
+          /><br />
+          <label for="asunto" class="colocar_asunto"
+            >Asunto
+            <span class="obligatorio">*</span>
+          </label>
+          <input
+            type="text"
+            name="asunto"
+            id="asunto"
+            placeholder="Escribe un asunto"
+          />
+          <button type="submit" id="enviar">Enviar</button>
+          <button type="button" id="Verdatos">Ver datos</button>
+          <button type="button" id="Cerrartabla">Quitar table</button>
+        </form>
+        <div id="errores" style="color: red; margin: 20px"></div>
+      </div>
+    </div>
+    <div class="tabla">
+      <table id="tabla-datos" class="tabla-datos"></table>
+    </div>
+
+    <script src="js.js"></script>
+    <script src="datos.js"></script>
+  </body>
+</html>

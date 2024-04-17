@@ -1,0 +1,71 @@
+
+function busquedaDeClima() {
+  $("#botonBusqueda").click(function () {
+    var text = $("#entradaBusqueda").val().trim();
+    var lugar = $(".lugar.enabled:contains(" + text + ")");
+    var latitudLugar = lugar.length > 0 ? lugar.data("latitud") : null;
+    var longitudLugar = lugar.length > 0 ? lugar.data("longitud") : null;
+
+    $.ajax({
+      method: "GET",
+      url: "https://api.open-meteo.com/v1/forecast",
+      data: {
+        latitude: latitudLugar,
+        longitude: longitudLugar,
+        current: "apparent_temperature,weather_code", // Solicitar los datos que deseas
+      },
+      success: function (detalle) {
+        // Actualizar la información en los elementos HTML con los datos recibidos
+        $("#nombreCiudad").text(text);
+        $("#temperatura").text(detalle.current.apparent_temperature + " °C");
+        $("#condiciones").text(detalle.current.weather_code);
+        $("#infoClima").show();
+      },
+      error: function () {
+        alert("Error al optener el clima.");
+      },
+    });
+    lugar.length > 0 ? null : alert("Lugar no disponible.");
+  });
+}
+
+//Apartado 3
+function busquedaDeClima2() {
+  $("#botonBusqueda").click(function () {
+    var text = $("#entradaBusqueda").val().trim();
+    var lugar = $(".lugar.enabled:contains(" + text + ")");
+    var latitudLugar = lugar.length > 0 ? lugar.data("latitud") : null;
+    var longitudLugar = lugar.length > 0 ? lugar.data("longitud") : null;
+
+    var url =
+      "https://api.open-meteo.com/v1/forecast?" +
+      "&latitude=" +
+      latitudLugar +
+      "&longitude=" +
+      longitudLugar +
+      "&current=apparent_temperature,weather_code";
+
+    $.get(url, function (response) {
+      if (response.error) {
+        alert("Error: " + response.error.message);
+      } else {
+        var nombreCiudad = lugar.text();
+        var temperatura = response.current.apparent_temperature + " °C";
+        var condiciones = obtenerCondiciones(response.current.weather_code);
+
+        $("#nombreCiudad").text(nombreCiudad);
+        $("#temperatura").text(temperatura);
+        $("#condiciones").text(condiciones);
+        $("#infoClima").show();
+      }
+    }).fail(function () {
+      alert("Error al obtener el clima.");
+    });
+  });
+
+  
+
+//Obtengo el lugar seleccionado con el método filter() para que sea case insensitive y no tenga espacios en blanco al inicio y al final del texto del lugar seleccionado
+    /*var lugar = $(".lugar.enabled").filter(function () {
+      return $(this).text().trim().toLowerCase() === nombreCiudad.toLowerCase();
+    });*/

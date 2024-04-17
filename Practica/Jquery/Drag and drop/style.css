@@ -1,0 +1,147 @@
+body {
+  background-color: #6a6a6a;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.theplayer {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 500px;
+  height: 400px;
+  background-image: url(https://tim-school.com/codepen/records/record.png);
+  background-size: 100% 100%;
+}
+
+.theplayerrecord {
+  position: absolute;
+  top: 58px;
+  left: 36px;
+  width: 366px;
+  height: 366px;
+  border-radius: 50%;
+}
+.theplayerrecord2 {
+  position: absolute;
+  top: 58px;
+  left: 36px;
+  width: 366px;
+  height: 366px;
+  border-radius: 50%;
+}
+.theplayerrecord3 {
+  position: absolute;
+  top: 58px;
+  left: 36px;
+  width: 366px;
+  height: 366px;
+  border-radius: 50%;
+}
+
+.therecord {
+  position: absolute;
+  top: 58px;
+  left: 545px;
+  width: 350px;
+  height: 350px;
+  background-image: url(https://tim-school.com/codepen/records/jazz.png);
+  background-size: 100% 100%;
+  border-radius: 50%;
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.therecord2 {
+  position: absolute;
+  top: 58px;
+  left: 745px;
+  width: 350px;
+  height: 350px;
+  background-image: url(https://tim-school.com/codepen/records/techno.png);
+  background-size: 100% 100%;
+  border-radius: 50%;
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.therecord3 {
+  position: absolute;
+  top: 58px;
+  left: 945px;
+  width: 350px;
+  height: 350px;
+  background-image: url(https://tim-school.com/codepen/records/dance.png);
+  background-size: 100% 100%;
+  border-radius: 50%;
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.on1 {
+  background-image: url(https://tim-school.com/codepen/records/jazz.png);
+  background-size: 100% 100%;
+  animation: on1 2s linear infinite;
+}
+
+@keyframes on1 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.on2 {
+  background-image: url(https://tim-school.com/codepen/records/techno.png);
+  background-size: 100% 100%;
+  animation: on2 2s linear infinite;
+}
+
+@keyframes on2 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.on3 {
+  background-image: url(https://tim-school.com/codepen/records/dance.png);
+  background-size: 100% 100%;
+  animation: on3 2s linear infinite;
+}
+
+@keyframes on3 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.therecord:hover {
+  filter: brightness(90%);
+}
+.therecord2:hover {
+  filter: brightness(90%);
+}
+.therecord3:hover {
+  filter: brightness(90%);
+}

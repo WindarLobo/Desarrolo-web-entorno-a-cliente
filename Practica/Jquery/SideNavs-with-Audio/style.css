@@ -1,0 +1,292 @@
+body {
+  overflow: hidden;
+}
+html,
+body {
+  height: 100%;
+}
+.box {
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.box-tv {
+  background-image: url("https://tim-school.com/codepen/jquery-themes/tv.png");
+  background-size: 100% 100%;
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  bottom: 20%;
+  right: 25%;
+  z-index: 55;
+}
+.box-links {
+  background-color: #000000;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+.box-title {
+  background-color: #1c1c1c;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 46%;
+  height: 68%;
+  z-index: 43;
+}
+#tim1 {
+  background-color: #000000;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 0;
+  height: 68%;
+  transition: 0s;
+  z-index: 44;
+  animation: tim1 16s linear infinite;
+}
+@keyframes tim1 {
+  0% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1a.jpg");
+    background-size: 100% 100%;
+  }
+  12.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1b.jpg");
+    background-size: 100% 100%;
+  }
+  25% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1c.jpg");
+    background-size: 100% 100%;
+  }
+  37.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1d.jpg");
+    background-size: 100% 100%;
+  }
+  50% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1e.jpg");
+    background-size: 100% 100%;
+  }
+  62.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1f.jpg");
+    background-size: 100% 100%;
+  }
+  75% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1g.jpg");
+    background-size: 100% 100%;
+  }
+  100% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/1h.jpg");
+    background-size: 100% 100%;
+  }
+}
+#tim2 {
+  background-color: #000000;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 0;
+  height: 68%;
+  transition: 0s;
+  z-index: 44;
+  animation: tim2 16s linear infinite;
+}
+@keyframes tim2 {
+  0% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2a.jpg");
+    background-size: 100% 100%;
+  }
+  12.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2b.jpg");
+    background-size: 100% 100%;
+  }
+  25% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2c.jpg");
+    background-size: 100% 100%;
+  }
+  37.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2d.jpg");
+    background-size: 100% 100%;
+  }
+  50% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2e.jpg");
+    background-size: 100% 100%;
+  }
+  62.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2f.jpg");
+    background-size: 100% 100%;
+  }
+  75% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2g.jpg");
+    background-size: 100% 100%;
+  }
+  100% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/2h.jpg");
+    background-size: 100% 100%;
+  }
+}
+#tim3 {
+  background-color: #000000;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 0;
+  height: 68%;
+  transition: 0s;
+  z-index: 44;
+  animation: tim3 16s linear infinite;
+}
+@keyframes tim3 {
+  0% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3a.jpg");
+    background-size: 100% 100%;
+  }
+  12.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3b.jpg");
+    background-size: 100% 100%;
+  }
+  25% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3c.jpg");
+    background-size: 100% 100%;
+  }
+  37.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3d.jpg");
+    background-size: 100% 100%;
+  }
+  50% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3e.jpg");
+    background-size: 100% 100%;
+  }
+  62.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3f.jpg");
+    background-size: 100% 100%;
+  }
+  75% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3g.jpg");
+    background-size: 100% 100%;
+  }
+  100% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/3h.jpg");
+    background-size: 100% 100%;
+  }
+}
+#tim4 {
+  background-color: #000000;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 0;
+  height: 68%;
+  transition: 0s;
+  z-index: 44;
+  animation: tim4 16s linear infinite;
+}
+@keyframes tim4 {
+  0% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4a.jpg");
+    background-size: 100% 100%;
+  }
+  12.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4b.jpg");
+    background-size: 100% 100%;
+  }
+  25% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4c.jpg");
+    background-size: 100% 100%;
+  }
+  37.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4d.jpg");
+    background-size: 100% 100%;
+  }
+  50% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4e.jpg");
+    background-size: 100% 100%;
+  }
+  62.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4f.jpg");
+    background-size: 100% 100%;
+  }
+  75% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4g.jpg");
+    background-size: 100% 100%;
+  }
+  100% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/4h.jpg");
+    background-size: 100% 100%;
+  }
+}
+#tim5 {
+  background-color: #000000;
+  position: absolute;
+  top: 12%;
+  left: 27%;
+  width: 0;
+  height: 68%;
+  transition: 0s;
+  z-index: 44;
+  animation: tim5 16s linear infinite;
+}
+@keyframes tim5 {
+  0% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5a.jpg");
+    background-size: 100% 100%;
+  }
+  12.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5b.jpg");
+    background-size: 100% 100%;
+  }
+  25% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5c.jpg");
+    background-size: 100% 100%;
+  }
+  37.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5d.jpg");
+    background-size: 100% 100%;
+  }
+  50% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5e.jpg");
+    background-size: 100% 100%;
+  }
+  62.5% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5f.jpg");
+    background-size: 100% 100%;
+  }
+  75% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5g.jpg");
+    background-size: 100% 100%;
+  }
+  100% {
+    background-image: url("https://tim-school.com/codepen/jquery-themes/5h.jpg");
+    background-size: 100% 100%;
+  }
+}
+#start1,
+#start2,
+#start3,
+#start4,
+#start5 {
+  background-color: #bfbfbf;
+  color: #000000;
+  border: 0;
+  width: 150px;
+  height: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  -webkit-box-shadow: 0px 0px 0px 5px #2e2e2e, inset 0px 10px 27px -8px #141414,
+    inset 0px -10px 27px -8px #383838, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px 5px #2e2e2e, inset 0px 10px 27px -8px #141414,
+    inset 0px -10px 27px -8px #383838, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+#start1:hover,
+#start2:hover,
+#start3:hover,
+#start4:hover,
+#start5:hover {
+  background-color: #422c0b;
+}

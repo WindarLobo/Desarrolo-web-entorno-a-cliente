@@ -1,0 +1,285 @@
+body {
+  background-color: #6a6a6a;
+}
+
+.box1 {
+  background-color: #ddb609;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: solid 3px #000000;
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.box2 {
+  background-color: #ddb609;
+  position: absolute;
+  top: 100px;
+  left: 500px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: solid 3px #000000;
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.box3 {
+  background-color: #ddb609;
+  position: absolute;
+  top: 100px;
+  left: 900px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: solid 3px #000000;
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.eye1a {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 175px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.eye1b {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 575px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.eye1c {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 975px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.eye2a {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 300px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.eye2b {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 700px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.eye2c {
+  background-color: #ffffff;
+  position: absolute;
+  top: 175px;
+  left: 1100px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 3px #000000;
+}
+
+.pupil1a {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 190px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.pupil1b {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 590px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.pupil1c {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 990px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.pupil2a {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 315px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.pupil2b {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 715px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.pupil2c {
+  background-color: #000000;
+  position: absolute;
+  top: 190px;
+  left: 1115px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 44;
+}
+
+.mouth1a {
+  background-color: #ffffff;
+  position: absolute;
+  top: 330px;
+  left: 180px;
+  width: 180px;
+  height: 4px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 12px #ac1616;
+}
+
+.mouth1b {
+  background-color: #000000;
+  position: absolute;
+  top: 330px;
+  left: 580px;
+  width: 30px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: 33;
+  border: solid 12px #ac1616;
+}
+
+.mouth1c {
+  background-color: #000000;
+  position: absolute;
+  top: 330px;
+  left: 980px;
+  width: 180px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 33;
+  border-bottom: solid 8px #ac1616;
+}
+
+.cigar1a {
+  position: absolute;
+  top: 430px;
+  left: 180px;
+  width: 0;
+  height: 0;
+  z-index: 33;
+}
+
+.cigar1b {
+  background-color: #ffffff;
+  position: absolute;
+  top: 345px;
+  left: 430px;
+  width: 180px;
+  height: 30px;
+  z-index: 33;
+  border-radius: 25px;
+}
+
+.cigar1c {
+  position: absolute;
+  top: 330px;
+  left: 980px;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  z-index: 33;
+}
+
+.smoke1a {
+  position: absolute;
+  top: 430px;
+  left: 180px;
+  width: 0;
+  height: 0;
+  z-index: 33;
+}
+
+.smoke1b {
+  background-color: #7a7a7a;
+  position: absolute;
+  top: 120px;
+  left: 400px;
+  width: 3px;
+  height: 200px;
+  border-radius: 50%;
+  z-index: 33;
+  border: dotted 6px #000000;
+  animation: animatebottom 2s linear infinite;
+}
+
+@keyframes animatebottom {
+  from {
+    filter: blur(10px);
+  }
+
+  to {
+    filter: blur(20px);
+  }
+}
+
+.smoke1c {
+  position: absolute;
+  top: 330px;
+  left: 980px;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  z-index: 33;
+}
