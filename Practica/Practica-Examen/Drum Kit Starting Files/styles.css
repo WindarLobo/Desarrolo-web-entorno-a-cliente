@@ -1,0 +1,92 @@
+body {
+  text-align: center;
+  background-color: #283149;
+}
+
+h1 {
+  font-size: 5rem;
+  color: #dbedf3;
+  font-family: "Arvo", cursive;
+  text-shadow: 3px 0 #da0463;
+}
+
+footer {
+  color: #dbedf3;
+  font-family: sans-serif;
+}
+
+.w,
+.a,
+.s,
+.d,
+.j,
+.k,
+.l {
+  outline: none;
+  border: 10px solid #404b69;
+  font-size: 5rem;
+  font-family: "Arvo", cursive;
+  line-height: 2;
+  font-weight: 900;
+  color: #da0463;
+  text-shadow: 3px 0 #dbedf3;
+  border-radius: 15px;
+  display: inline-block;
+  width: 150px; /* Ancho del botón */
+  height: 150px; /* Altura del botón */
+  text-align: center;
+  margin: 10px;
+  background-color: white;
+  position: relative; /* Establece posición relativa para el botón */
+  overflow: hidden;
+}
+.w img,
+.a img,
+.s img,
+.d img,
+.j img,
+.k img,
+.l img {
+  position: absolute; /* Establece posición absoluta para la imagen */
+  top: 50%; /* Coloca la imagen en el centro verticalmente */
+  left: 50%; /* Coloca la imagen en el centro horizontalmente */
+  transform: translate(-50%, -50%); /* Centra la imagen dentro del botón */
+  max-width: 100%; /* Ajusta el ancho máximo de la imagen al tamaño del botón */
+  max-height: 100%; /* Ajusta la altura máxima de la imagen al tamaño del botón */
+}
+
+.set {
+  margin: 10% auto;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.pressed {
+  box-shadow: 0 3px 4px 0 #dbedf3;
+  opacity: 0.5;
+}
+
+.red {
+  color: red;
+}
+
+.drum {
+  outline: none;
+  border: 10px solid #404b69;
+  font-size: 5rem;
+  font-family: "Arvo", cursive;
+  line-height: 2;
+  font-weight: 900;
+  color: #da0463;
+  text-shadow: 3px 0 #dbedf3;
+  border-radius: 15px;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: 10px;
+  background-color: white;
+}

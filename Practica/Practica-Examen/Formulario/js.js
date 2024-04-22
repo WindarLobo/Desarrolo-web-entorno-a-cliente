@@ -21,7 +21,7 @@ function validarNombre() {
   } else if (nombre.includes(" ")) {
     document.getElementById("errores").innerHTML +=
       "<br>El nombre  no puede contener espacios en blanco.";
-    telefonoInput.classList.add("errores");
+    nombreInput.classList.add("errores");
     return false;
   }
   return true;

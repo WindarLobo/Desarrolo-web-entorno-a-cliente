@@ -1,5 +1,4 @@
 // Elementos DOM
-
 const pantallas_juego = document.querySelectorAll(".pantalla-juego");
 const form_nombre = document.getElementById("nombre");
 const form_dni = document.getElementById("dni");
@@ -76,6 +75,7 @@ function verClasificacion() {
 }
 
 // SOLUCIÓN
+
 // Evento carga de página
 window.addEventListener("load", inicio);
 // Manejadores de eventos
@@ -138,7 +138,7 @@ let mm = 1,
   ss = 30;
 let intervalManager;
 function lanzaJuego() {
-  mm = 1;
+  mm = 0;
   ss = 30;
   iniciaJuego();
   printTimer(mm, ss);
