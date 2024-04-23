@@ -1,0 +1,131 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h2,
+h1 {
+  align-items: center;
+  text-align: center;
+}
+#errores {
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  background-color: #c7c7c7;
+  color: #0c0c0c;
+  padding: 20px;
+  text-align: center;
+}
+#bookForm {
+  width: 460px;
+  height: auto;
+  margin: 0px auto;
+  border-radius: 10px;
+  padding-top: 20px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  background-color: #82aa7c;
+  color: #0f0f0f;
+  padding-left: 30px;
+}
+#search-section {
+  width: 0 auto;
+
+  padding: 20px;
+  text-align: center;
+}
+#loan-section {
+  width: 0 auto;
+
+  padding: 20px;
+  text-align: center;
+}
+main {
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+input {
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 30px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #1a1819;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  width: 50px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+/* tablas  */
+.tabla-datos,
+.ventasLista {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  background-color: #eeeeee;
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 18px;
+}
+
+.tabla-datos td,
+th,
+.ventasLista td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tabla-datos tr:hover,
+.ventasLista tr:hover {
+  background-color: #797777;
+}
+
+.tabla-datos th,
+.ventasLista th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #82aa7c;
+  color: rgb(14, 13, 13);
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Biblioteca</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Gestión de Biblioteca</h1>
+
+    <!-- Formulario para agregar un nuevo libro -->
+    <form id="bookForm">
+      <h2>Agregar Nuevo Libro</h2>
+      <label>Título:</label>
+      <input type="text" id="title" name="title" /><br />
+      <label>Autor:</label>
+      <input type="text" id="author" name="author" /><br />
+      <label>Género:</label>
+      <input type="text" id="genero" name="genero" /><br />
+      <label>Copias:</label>
+      <input type="number" id="copias" name="copias" /><br />
+      <button type="submit" id="enviar">Agregar Libro</button>
+    </form>
+    <div id="errores" style="color: red; margin: 20px"></div>
+
+    <div id="bookList">
+      <h2>Lista de libros</h2>
+      <table id="tabla-datos" class="tabla-datos"></table>
+    </div>
+
+    <!-- Sección para buscar libros -->
+    <div id="search-section">
+      <h2>Buscar Libro</h2>
+      <label>Buscar por título, autor, o género:</label>
+      <input type="text" id="search-input" name="search-input" />
+      <button id="search-button">Buscar</button>
+      <div id="search-results" style="color: red; margin: 20px"></div>
+    </div>
+
+    <!-- Sección para préstamos y devoluciones -->
+    <div id="loan-section">
+      <h2>Préstamos y Devoluciones</h2>
+      <label>ID de Usuario:</label>
+      <input type="text" id="user-id" name="user-id" /><br />
+      <label>ID de Libro:</label>
+      <input type="text" id="book-id" name="book-id" /><br />
+      <button id="loan-button">Préstamo</button>
+      <button id="return-button">Devolución</button>
+    </div>
+    <script src="books.js"></script>
+    <script src="users.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
