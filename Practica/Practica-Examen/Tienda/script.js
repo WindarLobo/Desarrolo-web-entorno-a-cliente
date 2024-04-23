@@ -8,32 +8,29 @@ const btnVentas = document.getElementById("btnventas");
 const registroSection = document.getElementById("registro");
 const productosSection = document.getElementById("productos");
 const ventasSection = document.getElementById("ventas");
-//Mostrar datos
-function mostrarVentas() {
+
+//Cargo la pagina
+window.onload = () => {
+  document.getElementById("enviar").addEventListener("click", validar);
+};
+//Muestro
+btnVentas.addEventListener("click", function () {
   productosSection.style.display = "none";
   registroSection.style.display = "none";
   ventasSection.style.display = "block";
   mostrarEnVentas();
-}
-function mostrarRegistro() {
+});
+btnRegistro.addEventListener("click", function () {
   registroSection.style.display = "block";
   ventasSection.style.display = "none";
   productosSection.style.display = "none";
-}
-function mostrarProductosbutom() {
+});
+btnProductos.addEventListener("click", function () {
   registroSection.style.display = "none";
   ventasSection.style.display = "none";
   productosSection.style.display = "block";
   mostrarProductos();
-}
-
-//Carga la pagina
-window.onload = () => {
-  document.getElementById("enviar").addEventListener("click", validar);
-  btnRegistro.addEventListener("click", mostrarRegistro);
-  btnProductos.addEventListener("click", mostrarProductosbutom);
-  btnVentas.addEventListener("click", mostrarVentas);
-};
+});
 
 let datosScript = localStorage.getItem("datosScript");
 if (datosScript != null) {
@@ -63,7 +60,7 @@ function validarPrecio() {
 }
 
 function validar(e) {
-  document.getElementById("errores").innerHTML = ""; // Eliminar mensajes anteriores
+  document.getElementById("errores").innerHTML = ""; // Elimino mensajes anteriores
   document.getElementById("errores").style.display = "none";
   if (validarNombreProducto() && validarPrecio()) {
     agregarProducto();
@@ -81,19 +78,19 @@ function agregarProducto() {
 
   const index = datosScript.findIndex(
     (producto) => producto.nombre === nombreValor
-  ); // Verificar si el producto ya existe en la lista
+  ); // Verifico si el producto ya existe en la lista
   if (index !== -1) {
-    datosScript[index].precio = precioValor; // Si el producto existe, actualizar sus detalles
+    datosScript[index].precio = precioValor; // Si el producto existe, actualizo sus detalles
     datosScript[index].descripcion = descripcionValor;
   } else {
     datosScript.push({
       nombre: nombreValor,
       precio: precioValor,
       descripcion: descripcionValor,
-    }); // Si el producto no existe, agregarlo a la lista
+    }); // Si el producto no existe, lo agrego en  la lista
   }
 
-  localStorage.setItem("datosScript", JSON.stringify(datosScript)); // Guardar los datos actualizados en localStorage
+  localStorage.setItem("datosScript", JSON.stringify(datosScript)); // Guardo los datos y actualizo en localStorage
 }
 
 function mostrarProductos() {
@@ -165,9 +162,9 @@ function mostrarEnVentas(index) {
         </tr>
         `;
   }
-  // Actualizar la cantidad en el botón de la cesta
+  // Actualizo la cantidad en el botón de la cesta
   const cartCountElement = document.getElementById("cart-count");
   let cantidadEnCesta = parseInt(cartCountElement.textContent.slice(1, -1));
-  cantidadEnCesta++; // Incrementar la cantidad en 1
+  cantidadEnCesta++; // Incremento la cantidad en 1
   cartCountElement.textContent = `(${cantidadEnCesta})`;
 }
