@@ -82,19 +82,17 @@ th {
 }
 
 /* Estilos para el contenedor del formulario  login*/
-.login {
-  width: 400px;
+#login {
+  width: 500px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 80px auto 0;
+  margin-top: 90px;
 }
 
 /* Estilos para el título del formulario */
-.login h2 {
+#login h2 {
   margin-top: 0;
   margin-bottom: 20px;
   text-align: center;
@@ -102,7 +100,7 @@ th {
 }
 
 /* Estilos para las etiquetas de los campos de entrada */
-.login label {
+#login label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
@@ -110,7 +108,7 @@ th {
 }
 
 /* Estilos para los campos de entrada */
-.login input {
+#login input {
   width: 80%;
   padding: 10px;
   margin-bottom: 10px;
@@ -119,16 +117,15 @@ th {
   box-sizing: border-box;
 }
 
-/* Estilos para el botón de inicio de sesión */
-#inicioSesion {
-  width: 50%;
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
-  background-color: #c484b5;
-  border-color: #ab4493;
-  color: #fff;
-
-  font-size: 16px;
-  cursor: pointer;
+#total {
+  color: #060606;
+}
+#subtotal {
+  background-color: white;
+  width: 20%;
+  margin-left: 50%;
+}
+#total-ventas {
+  color: #0f0f0f;
+  margin-left: 3%;
 }

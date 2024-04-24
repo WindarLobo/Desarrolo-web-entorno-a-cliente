@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Negocio de Alquiler</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="registro">
+      <h1>Registro de Alquileres</h1>
+      <form id="formulario">
+        <input
+          type="text"
+          id="cliente"
+          placeholder="Nombre del cliente"
+          required
+        />
+        <select id="producto">
+          <option value="silla">Silla</option>
+          <option value="mesa">Mesa</option>
+          <option value="sofa">Sofá</option>
+        </select>
+        <input
+          type="number"
+          id="dias"
+          placeholder="Días de alquiler"
+          required
+        />
+        <button type="submit">Registrar Alquiler</button>
+      </form>
+      <div id="mensaje"></div>
+      <h2>Alquileres</h2>
+      <ul id="alquileres"></ul>
+      <h2>Total de Ingresos</h2>
+      <div id="total"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
