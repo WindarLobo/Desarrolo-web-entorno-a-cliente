@@ -6,34 +6,57 @@
     <title>Negocio de Alquiler</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <div id="registro">
+    <div id="containerUsuario">
+      <form id="usuario">
+        <h1>Login</h1>
+        <label>Nombre del Solicitante:</label>
+        <input type="text" id="borrowerName" name="borrowerName" />
+
+        <label>DNI del Solicitante:</label>
+        <input type="text" id="borrowerDNI" name="borrowerDNI" />
+
+        <label>Correo Electrónico:</label>
+        <input type="email" id="borrowerEmail" name="borrowerEmail" />
+
+        <button type="button" id="botonAcceso">Entrar en mi cuenta</button>
+        <a id="registro" href="#">Registrate</a>
+      </form>
+
+      <form id="loanForm" style="display: none">
+        <h3>Registrate!</h3>
+        <label>Nombre del Solicitante:</label>
+        <input type="text" id="nuevoNombre" name="borrowerName" />
+
+        <label>DNI del Solicitante:</label>
+        <input type="text" id="nuevoDNI" name="borrowerDNI" />
+
+        <label>Correo Electrónico:</label>
+        <input type="email" id="nuevoEmail" name="borrowerEmail" />
+        <button type="submit" id="crearUsuario">crear nuevo usuario</button>
+      </form>
+      <div id="errores" style="color: red; margin: 20px"></div>
+    </div>
+    <div id="registroAlquiler" style="display: none">
       <h1>Registro de Alquileres</h1>
       <form id="formulario">
-        <input
-          type="text"
-          id="cliente"
-          placeholder="Nombre del cliente"
-          required
-        />
+        <input type="text" id="cliente" placeholder="Nombre del cliente" />
         <select id="producto">
           <option value="silla">Silla</option>
           <option value="mesa">Mesa</option>
           <option value="sofa">Sofá</option>
         </select>
-        <input
-          type="number"
-          id="dias"
-          placeholder="Días de alquiler"
-          required
-        />
-        <button type="submit">Registrar Alquiler</button>
+        <input type="number" id="dias" placeholder="Días de alquiler" />
+        <button type="submit" id="registrarAlquiler">Registrar Alquiler</button>
       </form>
-      <div id="mensaje"></div>
-      <h2>Alquileres</h2>
-      <ul id="alquileres"></ul>
-      <h2>Total de Ingresos</h2>
+
+      <div id="tabla">
+        <table id="alquileres"></table>
+      </div>
+
       <div id="total"></div>
+      <a href="#" id="cerrarSesion">Cerrar sesión</a>
     </div>
 
     <script src="script.js"></script>
