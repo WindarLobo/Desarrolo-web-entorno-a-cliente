@@ -32,6 +32,9 @@ const header = document.getElementById("header");
 const ventasSection = document.getElementById("ventas");
 const productosSection = document.getElementById("productos");
 
+// Mensaje de error
+const errores = document.getElementById("errores");
+
 // almacenamiento  local
 let usuariosScript = JSON.parse(localStorage.getItem("usuariosScript")) || [];
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
@@ -63,6 +66,7 @@ btnRegistro.addEventListener("click", function () {
 btnRegistroDeProducto.addEventListener("click", function (e) {
   registrarProducto();
   e.preventDefault();
+  registroForm.reset();
   registroSection.style.display = "none";
 });
 btnAcceso.addEventListener("click", function () {
@@ -95,7 +99,7 @@ btnVentas.addEventListener("click", function () {
     productosSection.style.display = "none";
     ventasSection.style.display = "block";
     registroSection.style.display = "none";
-    mostrarCesta(usuarioAutenticado);
+    mostrarCesta();
   }
 });
 
@@ -114,14 +118,14 @@ bntcerrarSesion.addEventListener("click", function (event) {
 //Validaciones
 
 function validarAcceso() {
+  errores.innerHTML = "";
   let usuarioValido = null;
   // Verificar si los campos están vacíos
   if (
     nombreUsuarioExistente.value === "" ||
     contraseñaUsuarioExistente.value === ""
   ) {
-    document.getElementById("errores").innerHTML =
-      "Por favor, complete todos los campos.";
+    errores.innerHTML = "Por favor, complete todos los campos.";
     return null; // Devuelve null para indicar que no se puede validar el acceso
   }
   for (let i = 0; i < usuariosScript.length; i++) {
@@ -133,19 +137,22 @@ function validarAcceso() {
       break;
     }
   }
+  // Mostrar mensaje de error si no se encontró un usuario válido
+  if (usuarioValido === null) {
+    errores.innerHTML = "El usuario o la contraseña son incorrectos.";
+  }
+
   return usuarioValido;
 }
 
 function validarNombre() {
   let nombre = nombreNuevoUsuario.value.trim();
   if (nombre.includes(" ")) {
-    document.getElementById("errores").innerHTML +=
-      "Este campo no puede contener espacios <br>";
+    errores.innerHTML += "Este campo no puede contener espacios <br>";
 
     return false;
   } else if (nombre === "") {
-    document.getElementById("errores").innerHTML +=
-      "Este campo nombre es obligatorio <br>";
+    errores.innerHTML += "Este campo nombre es obligatorio <br>";
 
     return false;
   } else {
@@ -154,7 +161,7 @@ function validarNombre() {
 }
 function validarContraseña() {
   if (contraseñaNueva1.value != contraseñaNueva2.value) {
-    document.getElementById("errores").innerHTML +=
+    errores.innerHTML +=
       "<br> La contraseña no coinciden. Por favor, vuelva a intentarlo.";
 
     return false;
@@ -162,7 +169,7 @@ function validarContraseña() {
   // Verifico si la longitud de la contraseña es menor que 6 caracteres.
   if (contraseñaNueva1.value.length < 6) {
     // Mostrar un mensaje de error.
-    document.getElementById("errores").innerHTML +=
+    errores.innerHTML +=
       "<br> La contraseña deber contener al menos 6 caracteres.";
     return false;
   }
@@ -172,8 +179,7 @@ function validarContraseña() {
 function validarNombreProducto() {
   const nombreInput = String(nombreProducto.value);
   if (nombreInput == "") {
-    document.getElementById("errores").innerHTML +=
-      "<br>El nombre del producto es obligatorio.";
+    errores.innerHTML += "<br>El nombre del producto es obligatorio.";
     return false;
   }
   return true;
@@ -182,19 +188,18 @@ function validarNombreProducto() {
 function validarPrecioProducto() {
   const precioInput = Number(precioProducto.value);
   if (isNaN(precioInput) || precioInput <= 0) {
-    document.getElementById("errores").innerHTML +=
-      "<br>Por favor, ingrese un precio válido.";
+    errores.innerHTML += "<br>Por favor, ingrese un precio válido.";
     return false;
   }
   return true;
 }
 function validarNuevoUsuario(e) {
-  document.getElementById("errores").innerHTML = "";
-  document.getElementById("errores").style.display = "none";
+  errores.innerHTML = "";
+  errores.style.display = "none";
   if (validarNombre() && validarContraseña()) {
     agregarUsuario();
   } else {
-    document.getElementById("errores").style.display = "block";
+    errores.style.display = "block";
     e.preventDefault();
   }
 }
@@ -210,8 +215,7 @@ function agregarUsuario() {
   });
 
   if (usuarioExistente) {
-    document.getElementById("errores").innerHTML +=
-      "Este usuario ya existe<br>";
+    errores.innerHTML += "Este usuario ya existe<br>";
   } else {
     // Agrego nuevo usuario con lista de productos vacía
     let nuevoUsuario = {
@@ -300,22 +304,13 @@ function mostrarEnVentas(index) {
       // Guardo la lista actualizada de usuarios en el almacenamiento local
       localStorage.setItem("usuariosScript", JSON.stringify(usuariosScript));
       alert("Producto agregado a tu lista de productos.");
+      // Actualizo la cantidad en el botón de la cesta
     } else {
       alert("Usuario no encontrado.");
     }
   } else {
     alert("Debes iniciar sesión para agregar productos.");
   }
-  // Actualizo la cantidad en el botón de la cesta
-  actualizarCantidadEnCesta();
-}
-
-// Función para actualizar la cantidad de productos en la cesta cart-count
-function actualizarCantidadEnCesta() {
-  const cartCountElement = document.getElementById("cart-count");
-  let cantidadEnCesta = parseInt(cartCountElement.textContent.slice(1, -1));
-  cantidadEnCesta++;
-  cartCountElement.textContent = `(${cantidadEnCesta})`;
 }
 
 // Función para mostrar los productos en la lista de ventas del usuario
