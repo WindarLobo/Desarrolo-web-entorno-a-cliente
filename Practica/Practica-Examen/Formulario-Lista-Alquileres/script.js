@@ -129,7 +129,7 @@ function validarNuevoUsuario(e) {
   if (validarNombre() && validarDni() && validarEmail()) {
     agregarUsuario();
 
-    errores.innerHTML = "";
+     document.getElementById("errores").innerHTML = "";
   } else {
     document.getElementById("errores").style.display = "block";
 

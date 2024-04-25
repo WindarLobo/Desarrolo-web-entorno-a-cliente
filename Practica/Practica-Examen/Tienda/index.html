@@ -6,20 +6,32 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+ <body>
+      <div id="containerUsuario">
+         <form id="formularioInicioSesion">
+           <h2>Iniciar sesión</h2>
+            <label>Usuario<span class="obligatorio">*</span></label>
+            <input type="text" id="usuarioInicioSesion" name="borrowerName" placeholder="Nombre de usuario"><br><br>
+            <label>Contraseña<span class="obligatorio">*</span></label>
+            <input type="password" id="contrasena" name="borrowerPassword" placeholder="Contraseña"><br><br>
+            <button type="submit" id="botonAcceso">Iniciar sesión</button> <a id="registroLinck" href="#">Regístrate</a>
+         </form>
+       
+         <form id="loanForm" style="display: none">
+            <h3>Regístrate!</h3>
+            <label>Nombre del Solicitante:</label>
+            <input type="text" id="nuevoNombre" name="borrowerName" />
 
-  <section id="login">
-        <div class="contact_form">
-            <h2>Iniciar sesión</h2>
-            <form >
-                <label>Usuario<span class="obligatorio">*</span></label>
-                <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario"><br><br>
-                <label>Contraseña<span class="obligatorio">*</span></label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña"><br><br>
-                <button  id="btnSubmitLogin">Iniciar sesión</button>
-            </form>
-        </div>
-    </section>
-         <header id="header" style="display: none;">
+            <label>Contraseña:</label>
+            <input type="password" id="nuevaContraseña1" name="borrowerPassword" />
+            <label>Repetir Contraseña:</label>
+            <input type="password" id="nuevaContraseña2" name="borrowerPassword" />
+            <button type="submit" id="crearUsuario">Crear usuario</button>
+         </form>
+          <div id="errores" style="color: red; margin: 20px"></div>
+       </div>
+
+ <header id="header" style="display: none;">
             <h3 >Bienvenido : <span id="usuarioVista"></span></h3>
              <h1>Tienda</h1>
     
@@ -29,11 +41,12 @@
 
              <a href="#" id="btnventas"> Cesta<span id="cart-count">(0)</span></a>      
               <a id="cerrar" href="#">Cerra sesion</a>                
-         </header>
-        <section id="registro" style="display: none;">
-           <div class="contact_form">
+   </header>
+
+  <section id="registro" style="display: none;">
+      <div class="contact_form">
             <h2>Registro de Producto</h2>
-            <form id="registroForm">
+        <form id="registroForm">
           <label>Nombre<span class="obligatorio">*</span></label>
           <input
             type="text"
@@ -57,31 +70,25 @@
           /><br/><br />
           <button type="submit" id="enviar">Enviar</button>
         </form>
-        
-        </section>
-   
-        <div id="errores" style="color: red; margin: 20px"></div>
-        
- 
-  <section id="productos" style="display: none;">
+      </div>
+      <div id="errores" style="color: red; margin: 20px"></div>
+  </section>
+
+ <section id="productos" style="display: none;">
     <div class="tabla">
       <table id="tabla-datos" class="tabla-datos"></table>
     </div>
-   </section>
-
-         <section id="ventas" style="display: none;">
+ </section>
+    <section id="ventas" style="display: none;">
              <div class="tabla">
             <table id="ventasLista" class="ventasLista"></table>
            
          </div>
          <div id="subtotal">
-<h3 id="total">Subtotal : <em id="total-ventas"></em></h3>
+          <h3 id="total">Subtotal : <em id="total-ventas"></em></h3>
          </div>
-          
-         </section>
- <script src="datos.js"></script>
- <script src="script.js"></script>
-  
+    </section>
 
+ <script src="script.js"></script>
   </body>
 </html>

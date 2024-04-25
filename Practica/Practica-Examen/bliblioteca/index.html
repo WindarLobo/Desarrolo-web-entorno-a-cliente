@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Préstamo de Biblioteca</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f7f7f7;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="email"],
+      button {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .error-message {
+        color: #dc3545;
+        margin-top: 5px;
+      }
+      .error {
+        background-color: red;
+        border: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sistema de Préstamo de Biblioteca</h1>
+    <div class="container">
+      <form id="loanForm">
+        <h1>Si ya eres usuario</h1>
+        <label for="borrowerName">Nombre del Solicitante:</label>
+        <input type="text" id="borrowerName" name="borrowerName" />
+
+        <label for="borrowerDNI">DNI del Solicitante:</label>
+        <input type="text" id="borrowerDNI" name="borrowerDNI" />
+
+        <label for="borrowerEmail">Correo Electrónico:</label>
+        <input type="email" id="borrowerEmail" name="borrowerEmail" />
+
+        <button type="button" id="botonAcceso">Entrar en mi cuenta</button>
+      </form>
+    </div>
+    <div class="container">
+      <form id="loanForm">
+        <h1>Si no eres usuario</h1>
+        <h3>Registrate!</h3>
+        <label for="borrowerName">Nombre del Solicitante:</label>
+        <input type="text" id="nuevoNombre" name="borrowerName" />
+
+        <label for="borrowerDNI">DNI del Solicitante:</label>
+        <input type="text" id="nuevoDNI" name="borrowerDNI" />
+
+        <label for="borrowerEmail">Correo Electrónico:</label>
+        <input type="email" id="nuevoEmail" name="borrowerEmail" />
+        <button type="button" id="crearUsuario">crear nuevo usuario</button>
+        
+        </form>
+    </div>
+    <h1 id="error" style="color: red;"></h1>
+    <div class="container">
+        <h2>Información del Usuario</h2>
+        <div id="usuarioInfo"></div>
+
+       <h2>Libros Disponibles</h2>
+       <div id="libros"></div>
+       <h2>Mis Libros </h2>
+       <div id="librosPrestados"></div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+    
+  </body>
+</html>

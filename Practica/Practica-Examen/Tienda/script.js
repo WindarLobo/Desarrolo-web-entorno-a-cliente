@@ -1,115 +1,176 @@
-// Elementos DOM
-const nombre = document.getElementById("nombre");
-const precio = document.getElementById("precio");
-const descripcion = document.getElementById("descripcion");
-const btnRegistro = document.getElementById("btnRegistro");
+// Usuario nuevo
+const nombreNuevoUsuario = document.getElementById("nuevoNombre");
+const contraseñaNueva1 = document.getElementById("nuevaContraseña1");
+const contraseñaNueva2 = document.getElementById("nuevaContraseña2");
+
+//Usuario existente
+const nombreUsuarioExistente = document.getElementById("usuarioInicioSesion");
+const contraseñaUsuarioExistente = document.getElementById("contrasena");
+
+//Crear  productos
+const nombreProducto = document.getElementById("nombre");
+const precioProducto = document.getElementById("precio");
+const descripcionProducto = document.getElementById("descripcion");
+
+//Botones de la página
+const btnNuevoUsuario = document.getElementById("crearUsuario");
+const btnRegistro = document.getElementById("registroLinck");
 const btnProductos = document.getElementById("btnProductos");
+const btnAcceso = document.getElementById("botonAcceso");
+const btnRegistroProducto = document.getElementById("btnRegistro");
 const btnVentas = document.getElementById("btnventas");
+const bntcerrarSesion = document.getElementById("cerrar");
+const btnRegistroDeProducto = document.getElementById("enviar");
+
+//Section vista
 const registroSection = document.getElementById("registro");
-const productosSection = document.getElementById("productos");
-const ventasSection = document.getElementById("ventas");
-const btnLogin = document.getElementById("btnSubmitLogin");
+const containerUsuario = document.getElementById("containerUsuario");
+const formInicioUsuario = document.getElementById("formularioInicioSesion");
+const formRegistroUsuario = document.getElementById("loanForm");
+const registroForm = document.getElementById("registroForm");
 const header = document.getElementById("header");
-const loginForm = document.getElementById("login");
-const cerrarSesion = document.getElementById("cerrar");
-const usuario = document.getElementById("usuario");
-const password = document.getElementById("contrasena");
-// Estado de autenticación
+const ventasSection = document.getElementById("ventas");
+const productosSection = document.getElementById("productos");
+
+// almacenamiento  local
+let usuariosScript = JSON.parse(localStorage.getItem("usuariosScript")) || [];
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+// Variable para almacenar el estado de autenticación
 let usuarioAutenticado = false;
-// Cargo de la página
-window.onload = () => {
-  // Mostrar la vista correspondiente según el estado de autenticación
-  mostrarVista();
-  // Evento al hacer clic en el botón de registro
-  document.getElementById("enviar").addEventListener("click", validar);
+
+window.onload = function () {
+  formRegistroUsuario.reset();
+  formInicioUsuario.reset();
+  registroForm.reset();
+  btnNuevoUsuario.addEventListener("click", validarNuevoUsuario);
 };
 
-// Eventos de los botones de navegación
-btnVentas.addEventListener("click", function () {
-  if (usuarioAutenticado) {
-    mostrarSeccion(ventasSection);
-    mostrarEnVentas();
-  }
-});
-
-btnRegistro.addEventListener("click", function () {
-  if (usuarioAutenticado) {
-    mostrarSeccion(registroSection);
-  }
-});
-
+//botones
 btnProductos.addEventListener("click", function () {
   if (usuarioAutenticado) {
-    mostrarSeccion(productosSection);
+    productosSection.style.display = "block";
+    registroSection.style.display = "none";
+    ventasSection.style.display = "none";
     mostrarProductos();
   }
 });
-// Evento al hacer clic en el botón de inicio de sesión
-btnLogin.addEventListener("click", function () {
-  autenticarUsuario();
-  mostrarVista();
+btnRegistro.addEventListener("click", function () {
+  formRegistroUsuario.style.display = "block";
+  formInicioUsuario.style.display = "none";
 });
-cerrarSesion.addEventListener("click", function (e) {
+
+btnRegistroDeProducto.addEventListener("click", function (e) {
+  registrarProducto();
   e.preventDefault();
-  localStorage.removeItem("usuarioAutenticado");
-  header.style.display = "none";
   registroSection.style.display = "none";
-  productosSection.style.display = "none";
-  ventasSection.style.display = "none";
-  loginForm.style.display = "block";
 });
-
-// Función para mostrar una sección y ocultar las demás
-function mostrarSeccion(seccion) {
-  const secciones = [
-    loginForm,
-    registroSection,
-    productosSection,
-    ventasSection,
-  ];
-  // Ocultar todas las secciones
-  secciones.forEach((seccion) => (seccion.style.display = "none"));
-  // Mostrar la sección seleccionada
-  seccion.style.display = "block";
-}
-
-// Datos
-let datosScript = localStorage.getItem("datosScript");
-datosScript = datosScript != null ? JSON.parse(datosScript) : datos;
-
-// Función para autenticar al usuario
-function autenticarUsuario() {
-  const usuarioInput = String(usuario.value);
-  const passwordInput = String(password.value);
-  if (usuarioInput !== "" && passwordInput !== "") {
-    localStorage.setItem("usuarioAutenticado", JSON.stringify(usuarioInput));
-  } else {
-    document.getElementById("errores").innerHTML +=
-      "Usuario o contraseña incorrectos";
-  }
-}
-
-// Función para mostrar la vista correspondiente según el estado de autenticación
-function mostrarVista() {
-  // Verificar si el usuario está autenticado
-  const usuarioAutenticadoStorage = localStorage.getItem("usuarioAutenticado");
-  // Actualizar el estado de autenticación
-  usuarioAutenticado = usuarioAutenticadoStorage ? true : false;
-  if (usuarioAutenticado) {
-    loginForm.style.display = "none";
+btnAcceso.addEventListener("click", function () {
+  var usuarioValido = validarAcceso();
+  if (usuarioValido !== null) {
     header.style.display = "block";
+    formInicioUsuario.style.display = "none";
+    containerUsuario.style.display = "none";
+    // Guardo estado de autenticación en el almacenamiento local
+    localStorage.setItem("usuarioAutenticado", usuarioValido.nombre);
+    // Actualizo el estado de autenticación
+    usuarioAutenticado = true;
     // Mostrar nombre del usuario
-    document.getElementById("usuarioVista").textContent =
-      usuarioAutenticadoStorage;
+    document.getElementById("usuarioVista").textContent = usuarioValido.nombre;
   } else {
-    loginForm.style.display = "block";
+    containerUsuario.style.display = "block";
     header.style.display = "none";
   }
+});
+btnRegistroProducto.addEventListener("click", function () {
+  if (usuarioAutenticado) {
+    registroSection.style.display = "block";
+    productosSection.style.display = "none";
+    ventasSection.style.display = "none";
+  }
+});
+
+btnVentas.addEventListener("click", function () {
+  if (usuarioAutenticado) {
+    productosSection.style.display = "none";
+    ventasSection.style.display = "block";
+    registroSection.style.display = "none";
+    mostrarCesta(usuarioAutenticado);
+  }
+});
+
+bntcerrarSesion.addEventListener("click", function (event) {
+  event.preventDefault();
+  ventasSection.style.display = "none";
+  productosSection.style.display = "none";
+  registroSection.style.display = "none";
+  header.style.display = "none";
+  containerUsuario.style.display = "block";
+  formInicioUsuario.style.display = "block";
+  formInicioUsuario.reset();
+  usuarioAutenticado = false;
+});
+
+//Validaciones
+
+function validarAcceso() {
+  let usuarioValido = null;
+  // Verificar si los campos están vacíos
+  if (
+    nombreUsuarioExistente.value === "" ||
+    contraseñaUsuarioExistente.value === ""
+  ) {
+    document.getElementById("errores").innerHTML =
+      "Por favor, complete todos los campos.";
+    return null; // Devuelve null para indicar que no se puede validar el acceso
+  }
+  for (let i = 0; i < usuariosScript.length; i++) {
+    if (
+      nombreUsuarioExistente.value === usuariosScript[i].nombre &&
+      contraseñaUsuarioExistente.value === usuariosScript[i].contraseña
+    ) {
+      usuarioValido = usuariosScript[i];
+      break;
+    }
+  }
+  return usuarioValido;
 }
 
-// Función para validar el nombre del producto
+function validarNombre() {
+  let nombre = nombreNuevoUsuario.value.trim();
+  if (nombre.includes(" ")) {
+    document.getElementById("errores").innerHTML +=
+      "Este campo no puede contener espacios <br>";
+
+    return false;
+  } else if (nombre === "") {
+    document.getElementById("errores").innerHTML +=
+      "Este campo nombre es obligatorio <br>";
+
+    return false;
+  } else {
+    return true;
+  }
+}
+function validarContraseña() {
+  if (contraseñaNueva1.value != contraseñaNueva2.value) {
+    document.getElementById("errores").innerHTML +=
+      "<br> La contraseña no coinciden. Por favor, vuelva a intentarlo.";
+
+    return false;
+  }
+  // Verifico si la longitud de la contraseña es menor que 6 caracteres.
+  if (contraseñaNueva1.value.length < 6) {
+    // Mostrar un mensaje de error.
+    document.getElementById("errores").innerHTML +=
+      "<br> La contraseña deber contener al menos 6 caracteres.";
+    return false;
+  }
+  return true;
+}
+
 function validarNombreProducto() {
-  const nombreInput = String(nombre.value);
+  const nombreInput = String(nombreProducto.value);
   if (nombreInput == "") {
     document.getElementById("errores").innerHTML +=
       "<br>El nombre del producto es obligatorio.";
@@ -118,9 +179,8 @@ function validarNombreProducto() {
   return true;
 }
 
-// Función para validar el precio del producto
-function validarPrecio() {
-  const precioInput = Number(precio.value);
+function validarPrecioProducto() {
+  const precioInput = Number(precioProducto.value);
   if (isNaN(precioInput) || precioInput <= 0) {
     document.getElementById("errores").innerHTML +=
       "<br>Por favor, ingrese un precio válido.";
@@ -128,73 +188,97 @@ function validarPrecio() {
   }
   return true;
 }
-
-// Función para validar el formulario de registro
-function validar(e) {
+function validarNuevoUsuario(e) {
   document.getElementById("errores").innerHTML = "";
   document.getElementById("errores").style.display = "none";
-  if (validarNombreProducto() && validarPrecio()) {
-    agregarProducto();
-    return true;
+  if (validarNombre() && validarContraseña()) {
+    agregarUsuario();
   } else {
-    e.preventDefault();
     document.getElementById("errores").style.display = "block";
-    return false;
+    e.preventDefault();
+  }
+}
+function agregarUsuario() {
+  let nombreIngresado = nombreNuevoUsuario.value.trim().toLowerCase();
+  let contraseñaIngresado1 = contraseñaNueva1.value;
+  // Verifico si el usuario ya existe
+  let usuarioExistente = usuariosScript.find((usuario) => {
+    return (
+      nombreIngresado === usuario.nombre.toLowerCase() &&
+      contraseñaIngresado1 === usuario.contraseña
+    );
+  });
+
+  if (usuarioExistente) {
+    document.getElementById("errores").innerHTML +=
+      "Este usuario ya existe<br>";
+  } else {
+    // Agrego nuevo usuario con lista de productos vacía
+    let nuevoUsuario = {
+      nombre: nombreNuevoUsuario.value,
+      contraseña: contraseñaNueva1.value,
+      productos: [], // Inicializo la lista de productos como vacía
+    };
+
+    // Agrego el nuevo usuario a la lista de usuarios
+    usuariosScript.push(nuevoUsuario);
+    // Guardoen el almacenamiento local
+    localStorage.setItem("usuariosScript", JSON.stringify(usuariosScript));
   }
 }
 
-// Función para agregar un producto
-function agregarProducto() {
-  const nombreValor = nombre.value;
-  const precioValor = precio.value;
-  const descripcionValor = descripcion.value;
-  const usuarioAutenticado = localStorage.getItem("usuarioAutenticado");
-  const nombreUsuario = usuarioAutenticado
-    ? JSON.parse(usuarioAutenticado).usuario
-    : null;
+function registrarProducto() {
+  // Obtengo los valores de los campos de entrada del formulario
+  const nombreValor = nombreProducto.value.trim();
+  const precioValor = precioProducto.value.trim();
+  const descripcionValor = descripcionProducto.value.trim();
 
-  const index = datosScript.findIndex(
+  if (!validarNombreProducto()) {
+    return;
+  }
+  if (!validarPrecioProducto()) {
+    return;
+  }
+  const index = productos.findIndex(
     (producto) => producto.nombre === nombreValor
   );
+
   if (index !== -1) {
-    datosScript[index].precio = precioValor;
-    datosScript[index].descripcion = descripcionValor;
-    datosScript[index].usuario = nombreUsuario;
+    // Si el producto ya existe, actualizo sus atributos
+    productos[index].precio = precioValor;
+    productos[index].descripcion = descripcionValor;
   } else {
-    datosScript.push({
+    // Si el producto no existe, lo agrego a la lista de productos
+    let nuevoProducto = {
+      productId: productos.length + 1,
       nombre: nombreValor,
       precio: precioValor,
       descripcion: descripcionValor,
-      usuario: nombreUsuario,
-    });
+    };
+    // Añado el nuevo producto a la lista de productos
+    productos.push(nuevoProducto);
   }
 
-  localStorage.setItem("datosScript", JSON.stringify(datosScript));
+  // Guardo la lista actualizada de productos en el productos local
+  localStorage.setItem("productos", JSON.stringify(productos));
+
+  // Llamo a la función para mostrar los productos en la tabla
+  mostrarProductos();
 }
 
-// Función para mostrar los productos del usuario autenticado
 function mostrarProductos() {
-  const usuarioAutenticado = localStorage.getItem("usuarioAutenticado");
-  const nombreUsuario = usuarioAutenticado
-    ? JSON.parse(usuarioAutenticado).usuario
-    : null;
-
-  const productosUsuario = datosScript.filter(
-    (producto) => producto.usuario === nombreUsuario
-  );
-
   document.getElementById("tabla-datos").innerHTML = "";
   document.getElementById("tabla-datos").innerHTML +=
     "<th>NOMBRE</th><th>PRECIO</th><th>DESCRIPCION</th><th>type</th></tr>";
-  for (let i = 0; i < productosUsuario.length; i++) {
+  for (let i = 0; i < productos.length; i++) {
     if (i < 10) {
       document.getElementById("tabla-datos").innerHTML +=
         "</td><td>" +
-        productosUsuario[i].nombre +
+        productos[i].nombre +
         "</td><td>" +
-        productosUsuario[i].precio +
+        productos[i].precio +
         "€</td><td>" +
-        productosUsuario[i].descripcion +
+        productos[i].descripcion +
         "</td><td><button id='mostrarEnVentas' onclick='mostrarEnVentas(" +
         i +
         ")'>Agregar producto</button>";
@@ -203,72 +287,91 @@ function mostrarProductos() {
     }
   }
 }
+// Función para mostrar un producto en la lista de ventas del usuario
 function mostrarEnVentas(index) {
-  const producto = datosScript[index];
-  if (producto) {
-    // Aquí va el resto del código
-
-    const ventasLista = document.getElementById("ventasLista");
-    if (!ventasLista.querySelector("tr th")) {
-      ventasLista.innerHTML = `
-        <tr>
-            <th>NOMBRE</th>
-            <th>PRECIO UNITARIO</th>
-            <th>PRECIO TOTAL</th>
-            <th>Cantidad</th>
-        </tr>`;
+  // Verifico si hay un usuario autenticado
+  let usuarioAutenticado = localStorage.getItem("usuarioAutenticado");
+  if (usuarioAutenticado) {
+    // Busco el usuario autenticado en la lista de usuarios
+    let usuario = usuariosScript.find((u) => u.nombre === usuarioAutenticado);
+    if (usuario) {
+      // Agregoel producto seleccionado a la lista de productos del usuario
+      usuario.productos.push(productos[index]);
+      // Guardo la lista actualizada de usuarios en el almacenamiento local
+      localStorage.setItem("usuariosScript", JSON.stringify(usuariosScript));
+      alert("Producto agregado a tu lista de productos.");
+    } else {
+      alert("Usuario no encontrado.");
     }
+  } else {
+    alert("Debes iniciar sesión para agregar productos.");
+  }
+  // Actualizo la cantidad en el botón de la cesta
+  actualizarCantidadEnCesta();
+}
 
-    // Verifico si el producto ya está en la lista
-    const filasProductos = ventasLista.querySelectorAll("tr");
-    let productoExistente = false;
-    for (let i = 1; i < filasProductos.length; i++) {
-      const nombreProducto =
-        filasProductos[i].querySelector("td:first-child").textContent;
-      if (nombreProducto == producto.nombre) {
-        // Si el producto ya está en la lista, aumento la cantidad y actualizo el precio total
-        let cantidad = parseInt(
-          filasProductos[i].querySelector("td:last-child").textContent
-        );
-        cantidad++;
-        filasProductos[i].querySelector("td:last-child").textContent = cantidad;
-        const precioUnitario = parseFloat(
-          filasProductos[i].querySelector("td:nth-child(2)").textContent
-        );
-        const precioTotal = cantidad * precioUnitario;
-        filasProductos[i].querySelector("td:nth-child(3)").textContent =
-          precioTotal.toFixed(2);
-        productoExistente = true;
-        break;
+// Función para actualizar la cantidad de productos en la cesta cart-count
+function actualizarCantidadEnCesta() {
+  const cartCountElement = document.getElementById("cart-count");
+  let cantidadEnCesta = parseInt(cartCountElement.textContent.slice(1, -1));
+  cantidadEnCesta++;
+  cartCountElement.textContent = `(${cantidadEnCesta})`;
+}
+
+// Función para mostrar los productos en la lista de ventas del usuario
+function mostrarCesta() {
+  let usuarioAutenticado = localStorage.getItem("usuarioAutenticado");
+  if (usuarioAutenticado) {
+    let usuario = usuariosScript.find((u) => u.nombre === usuarioAutenticado);
+    if (usuario && usuario.productos.length > 0) {
+      let ventasLista = document.getElementById("ventasLista");
+      ventasLista.innerHTML = "";
+      ventasLista.innerHTML +=
+        "<th>NOMBRE</th><th>PRECIO</th><th>CANTIDAD</th><th>PRECIO TOTAL</th><th>DESCRIPCION</th></tr>";
+      let precioTotal = 0;
+      let cantidadProductos = 0;
+      let productosEnCesta = {};
+
+      usuario.productos.forEach((producto) => {
+        let nombreProducto = producto.nombre;
+        let precioProducto = parseFloat(producto.precio);
+
+        // Incremento la cantidad si el producto ya está en la cesta
+        if (productosEnCesta.hasOwnProperty(nombreProducto)) {
+          productosEnCesta[nombreProducto].cantidad++;
+        } else {
+          // Agrego el producto a la cesta
+          productosEnCesta[nombreProducto] = {
+            precio: precioProducto,
+            cantidad: 1,
+            descripcion: producto.descripcion,
+          };
+        }
+      });
+
+      // Muestro los productos en la cesta
+      for (let nombreProducto in productosEnCesta) {
+        let producto = productosEnCesta[nombreProducto];
+        let precioProductoTotal = producto.precio * producto.cantidad;
+        ventasLista.innerHTML +=
+          "<tr><td>" +
+          nombreProducto +
+          "</td><td>" +
+          producto.precio.toFixed(2) +
+          "€</td><td>" +
+          producto.cantidad +
+          "</td><td>" +
+          precioProductoTotal.toFixed(2) +
+          "€</td><td>" +
+          producto.descripcion +
+          "</td></tr>";
+
+        precioTotal += precioProductoTotal;
+        cantidadProductos += producto.cantidad;
       }
+      //Calcular la suma total de los precios de los productos en la lista
+      const totalElement = document.getElementById("total-ventas");
+      totalElement.textContent = precioTotal.toFixed(2);
     }
-
-    // Si el producto no está en la lista, lo agrego como una fila
-    if (!productoExistente) {
-      ventasLista.innerHTML += `
-        <tr>
-            <td>${producto.nombre}</td>
-            <td>${producto.precio} €</td>
-            <td>${producto.precio} €</td>
-            <td>1</td>
-        </tr>
-        `;
-    }
-    // Calcular la suma total de los precios de los productos en la lista
-    const totalElement = document.getElementById("total-ventas");
-    let total = 0;
-    filasProductos.forEach((fila, index) => {
-      if (index !== 0) {
-        // Ignorar la primera fila que contiene los encabezados
-        total += parseFloat(fila.querySelector("td:nth-child(3)").textContent);
-      }
-    });
-    totalElement.textContent = total.toFixed(2);
-
-    // Actualizo la cantidad en el botón de la cesta
-    const cartCountElement = document.getElementById("cart-count");
-    let cantidadEnCesta = parseInt(cartCountElement.textContent.slice(1, -1));
-    cantidadEnCesta++; // Incremento la cantidad en 1
-    cartCountElement.textContent = `(${cantidadEnCesta})`;
   }
 }

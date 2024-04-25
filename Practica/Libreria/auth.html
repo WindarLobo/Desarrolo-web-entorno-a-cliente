@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Register</title>
+</head>
+<body>
+    <div class="login">
+        <h1>Login</h1>
+        <input type="text" name="" id="txtLoginUsuario" placeholder="Introduce tu usuario">
+        <input type="password" name="" id="txtLoginContrasenha" placeholder="Introduce tu contraseña">
+        <button id="authUsuario">Inicia Sesión</button>
+        <button id="registro">No tienes Cuenta?</button>
+        <ul id="erroresLogin" style="color: red;"></ul>
+    </div>
+    <div class="registro" style="display: none;">
+        <h1>Registro</h1>
+        <input type="text" name="" id="txtRegisterUsuario" placeholder="Introduce tu usuario">
+        <input type="password" name="" id="txtRegisterContrasenha" placeholder="Introduce tu contraseña">
+        <input type="text" name="" id="txtRegisterDNI" placeholder="Introduce tu DNI">
+        <button id="addUsuario">Crea tu cuenta</button>
+        <button id="login">Ya tienes Cuenta?</button>
+        <ul id="erroresRegistro" style="color: red;"></ul>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/auth.js"></script>
+</html>
