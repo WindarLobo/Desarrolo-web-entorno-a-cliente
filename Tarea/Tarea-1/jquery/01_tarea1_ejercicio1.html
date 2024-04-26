@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego del 21</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Juego del 21</h1>
+    <div id="resultado"></div>
+
+    <script>
+      $(document).ready(function () {
+        // Número de cartas
+        const numeroDeCartas = 3;
+
+        // Jugadores
+        const jugadorAna = "Ana";
+        const jugadorCarlos = "Carlos";
+
+        // Función para calcular la suma de cartas.
+        function calcularSumaDeCartas(cartas) {
+          // Utiliza el método reduce para sumar los valores del array cartas
+          return cartas.reduce((suma, carta) => suma + carta, 0);
+        }
+
+        // Función para obtener un array de cartas para un jugador a partir de un objeto iterable.
+        function obtenerCartas(cantidadDeCartas) {
+          return Array.from(
+            { length: cantidadDeCartas },
+            () => Math.floor(Math.random() * 10) + 1
+          );
+        }
+
+        // Obtenemos las cartas de Ana.
+        let cartasAna = obtenerCartas(numeroDeCartas);
+
+        // Obtenemos las cartas de Carlos.
+        let cartasCarlos = obtenerCartas(numeroDeCartas);
+
+        // Calcular sumas.
+        let sumaAna = calcularSumaDeCartas(cartasAna);
+        let sumaCarlos = calcularSumaDeCartas(cartasCarlos);
+
+        // Determinar el ganador
+        let resultado = "";
+        if (sumaAna > 21 && sumaCarlos > 21) {
+          resultado = "Ambos jugadores se han pasado de 21. Es un empate.";
+        } else if (sumaAna > 21) {
+          resultado = `${jugadorAna} se ha pasado de 21. ${jugadorCarlos} gana.`;
+        } else if (sumaCarlos > 21) {
+          resultado = `${jugadorCarlos} se ha pasado de 21. ${jugadorAna} gana.`;
+        } else if (sumaAna > sumaCarlos) {
+          resultado = `${jugadorAna} gana con una suma de ${sumaAna}.`;
+        } else if (sumaCarlos > sumaAna) {
+          resultado = `${jugadorCarlos} gana con una suma de ${sumaCarlos}.`;
+        } else {
+          resultado = "¡Ha habido un empate!";
+        }
+
+        // Mostrar el resultado en el elemento con id "resultado"
+        $("#resultado").text(resultado);
+      });
+    </script>
+  </body>
+</html>

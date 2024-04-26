@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Online</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Formulario de Compra</h1>
+    <form id="orderForm">
+      <label>Nombre del Producto:</label>
+      <input type="text" id="productName" /><br /><br />
+
+      <label>Cantidad:</label>
+      <input type="number" id="quantity" /><br /><br />
+
+      <label>Precio Unitario:</label>
+      <input type="number" id="price" /><br /><br />
+
+      <button type="submit" id="enviar">Enviar Pedido</button>
+    </form>
+    <div id="errores" style="color: red; margin: 20px"></div>
+
+    <div id="orderSummary">
+      <h2>Resumen del Pedido:</h2>
+      <div class="tabla">
+        <table id="tabla-datos" class="tabla-datos"></table>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="datos.js"></script>
+    <script src="j.js"></script>
+  </body>
+</html>

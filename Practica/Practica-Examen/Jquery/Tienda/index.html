@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+ <body>
+      <div id="containerUsuario">
+         <form id="formularioInicioSesion">
+           <h2>Iniciar sesión</h2>
+            <label>Usuario<span class="obligatorio">*</span></label>
+            <input type="text" id="usuarioInicioSesion" name="borrowerName" placeholder="Nombre de usuario"><br><br>
+            <label>Contraseña<span class="obligatorio">*</span></label>
+            <input type="password" id="contrasena" name="borrowerPassword" placeholder="Contraseña"><br><br>
+            <button type="button" id="botonAcceso">Iniciar sesión</button> <a id="registroLinck" href="#">Regístrate</a>
+         </form>
+       
+         <form id="loanForm" style="display: none">
+            <h3>Regístrate!</h3>
+            <label>Nombre del Solicitante:</label>
+            <input type="text" id="nuevoNombre" name="borrowerName" />
+
+            <label>Contraseña:</label>
+            <input type="password" id="nuevaContraseña1" name="borrowerPassword" />
+            <label>Repetir Contraseña:</label>
+            <input type="password" id="nuevaContraseña2" name="borrowerPassword" />
+            <button type="submit" id="crearUsuario">Crear usuario</button>
+         </form>
+          <div id="errores" style="color: red; margin: 20px"></div>
+       </div>
+
+ <header id="header" style="display: none;">
+            <h3 >Bienvenido : <span id="usuarioVista"></span></h3>
+             <h1>Tienda</h1>
+    
+              <a id="btnRegistro" href="#" >Registro de producto</a>
+                  
+             <a id="btnProductos" href="#">Mostrar productos</a>
+
+             <a href="#" id="btnventas"> Cesta</span>
+</a>      
+              <a id="cerrar" href="#">Cerra sesion</a>                
+   </header>
+
+  <section id="registro" style="display: none;">
+      <div class="contact_form">
+            <h2>Registro de Producto</h2>
+        <form id="registroForm">
+          <label>Nombre<span class="obligatorio">*</span></label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre del producto"
+          /><br /><br />
+          <label>Precio<span class="obligatorio">*</span></label>
+          <input
+            type="number"
+            id="precio"
+            name="precio"
+            placeholder="Escribe el precio"
+          /><br /><br />
+          <label>descripcion</span></label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            placeholder="Escribe una descripcion"
+          /><br/><br />
+          <button type="submit" id="enviar">Enviar</button>
+        </form>
+      </div>
+      <div id="errores" style="color: red; margin: 20px"></div>
+  </section>
+
+ <section id="productos" style="display: none;">
+    <div class="tabla">
+      <table id="tabla-datos" class="tabla-datos"></table>
+    </div>
+ </section>
+    <section id="ventas" style="display: none;">
+             <div class="tabla">
+            <table id="ventasLista" class="ventasLista"></table>
+           
+         </div>
+         <div id="subtotal">
+          <h3 id="total">Subtotal : <em id="total-ventas"></em></h3>
+         </div>
+    </section>
+
+ <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarea de Validación de Formulario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="03_validacion.js"></script>
+    <style>
+      #errores {
+        color: red;
+      }
+      .error-input {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <form method="POST">
+        <label>Nombre <br /><input type="text" id="txtNombre" /></label
+        ><br /><br />
+        <label>Edad <br /><input type="number" id="txtEdad" /></label
+        ><br /><br />
+        <label>Contraseña <br /><input type="password" id="txtPass1" /></label
+        ><br /><br />
+        <label
+          >Confirmar contraseña <br /><input
+            type="password"
+            id="txtPass2" /></label
+        ><br /><br />
+        <label
+          >Correo Electrónico <br /><input type="email" id="txtEmail" /></label
+        ><br /><br />
+        <input type="checkbox" id="chkTyc" /> Acepto los términos y condiciones
+        <br /><br />
+        <button type="submit" id="btnEnviar" disabled>Enviar</button>
+      </form>
+      <div id="errores"></div>
+      <div id="intentos"></div>
+    </main>
+  </body>
+</html>

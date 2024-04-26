@@ -1,0 +1,139 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+body {
+  height: 100%;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #ab4493;
+}
+
+.contact_form {
+  width: 460px;
+  height: auto;
+  margin: 0px auto;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #fbfbfb;
+  padding-left: 30px;
+}
+
+input {
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 40px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ab4493;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  background-color: #fbfbfb;
+  width: 405px;
+  height: 150px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ab4493;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+}
+
+label {
+  display: block;
+  float: center;
+}
+
+button {
+  height: 45px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 15px;
+  text-transform: uppercase;
+  background-color: #ab4493;
+  border-color: #ab4493;
+  border-style: solid;
+  border-radius: 10px;
+  width: 120px;
+  cursor: pointer;
+}
+
+button p {
+  color: #fff;
+}
+
+span {
+  color: #ab4493;
+}
+
+h1 {
+  font-size: 39px;
+  text-align: letf;
+  padding-bottom: 10px;
+  color: #ab4493;
+}
+
+h3 {
+  font-size: 15px;
+  padding-bottom: 20px;
+  color: #0e0e0e;
+}
+
+p {
+  font-size: 14px;
+  color: #0e0e0e;
+}
+
+::-webkit-input-placeholder {
+  color: #a8a8a8;
+}
+
+::-webkit-textarea-placeholder {
+  color: #a8a8a8;
+}
+
+.formulario input:focus {
+  outline: 0;
+  border: 1px solid #97d848;
+}
+
+.formulario textarea:focus {
+  outline: 0;
+  border: 1px solid #97d848;
+}
+
+/* tablas  */
+.tabla-datos {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  background-color: #eeeeee;
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 18px;
+}
+
+.tabla-datos td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tabla-datos tr:hover {
+  background-color: #797777;
+}
+
+.tabla-datos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+.error {
+  border: 2px solid red;
+}

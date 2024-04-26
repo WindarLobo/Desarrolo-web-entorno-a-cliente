@@ -50,6 +50,10 @@ function aplicarEfecto() {
 function obtenerfruta() {
   // Obtengo el elemento resultado
   let resultado = document.getElementById("resultado");
+  // Elimino el listener de mouseover del elemento "mostrarFrutas"
+  document
+    .getElementById("mostrarFrutas")
+    .removeEventListener("mouseover", obtenerfruta);
   // Vacío su contenido.
   resultado.innerHTML = "";
   // Creo una lista desordenada.
