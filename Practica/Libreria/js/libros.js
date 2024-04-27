@@ -6,7 +6,7 @@ $(document).ready(function () {
     } else {
         window.location.href = 'auth.html'
     }
-
+    
     let libros = [
         {"nombre": "Cien años de soledad", "autor": "Gabriel García Márquez", "año": "1967 ", "ventas": "50 millones"},
         {"nombre": "El Señor de los Anillos","autor": "J.R.R. Tolkien","año": "1954","ventas": "150 millones"},
@@ -18,17 +18,19 @@ $(document).ready(function () {
         {"nombre": "El Código Da Vinci","autor": "Dan Brown","año": "2003","ventas": "80 millones"},
         {"nombre": "Orgullo y Prejuicio", "autor": "Jane Austen", "año": "1813", "ventas": "50 millones"}
     ];
-
     
-    libros.sort(((a, b) => b.año - a.año));
+    if (localStorage.getItem('biblioteca')) {
+        var librosRecuperar = JSON.parse(localStorage.getItem('biblioteca'));
+    } else {
+        var librosRecuperar = libros;
+    }
     
-    libros.forEach(libro => {
-        $('.libros').append(`<div class="librosContainer" style="margin: 95px">
-        <h3>${libro.nombre}</h3> <p>${libro.autor}</p> 
-        <small>${libro.año} - Nº Venta: ${libro.ventas}</small>
-        <div style="margin-top : 25px"><button class="addPrestamo">Agregar al préstamo</button></div>
-        </div>`);
-    });
+    actualizarLibros();
+    
+    if(usuarioActual.nombre === 'Admin'){
+        $('#modoAdmin').css('display', 'block');
+        $('.eliminarAdminLibro').css('display', 'flex');
+    }
 
     $('.addPrestamo').click(function (e) { 
         let libro = {
@@ -48,7 +50,7 @@ $(document).ready(function () {
         } else {
             $('#mostrarCesta').empty();
             usuarioActual.cesta.forEach(libros => {
-                $('#mostrarCesta').append(`<p>${libros.nombreLibro} - ${libros.autorLibro} <button class="eliminarLibro">Elimnar de la Cesta</button></p>`)
+                $('#mostrarCesta').append(`<p>${libros.nombreLibro} - ${libros.autorLibro} <button class="eliminarLibro">Eliminar de la Cesta</button></p>`)
             });
         }
     }
@@ -60,7 +62,78 @@ $(document).ready(function () {
         localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
         actualizarMostrarCesta(usuarioActual);
     });
-    
 
     actualizarMostrarCesta(usuarioActual);
+
+    function valNombreLibro(){
+        let nombreLibro = $('#txtNombreLibro').val();
+        if(nombreLibro === '' || nombreLibro === undefined) return false;
+        return true;
+    }
+
+    function valAutorLibro() {  
+        let autorLibro = $('#txtAutorLibro').val();
+        if(autorLibro === '' || autorLibro === undefined) return false;
+        return true;
+    }
+
+    function valAnhoLibro() {  
+        let anhoLibro = parseInt($('#txtAnhoLibro').val());
+        if(anhoLibro === 0 || anhoLibro === undefined || anhoLibro === null) return false;
+        return true;
+    }
+
+    function valCopiasLibro() {  
+        let ventasLibro = $('#txtCopiasLibro').val();
+        if(ventasLibro === 0 || ventasLibro === undefined) return false;
+        return true;
+    }
+
+    function valLibro() {  
+        let valNombre = valNombreLibro();
+        let valAutor = valAutorLibro();
+        let valAnho = valAnhoLibro();
+        let valCopias = valCopiasLibro();
+
+        if(valNombre && valAutor && valAnho && valCopias) return true;
+        return false;
+    }
+
+    $('#modoAdmin').click(function (e) { 
+        $('.formLibro').css('display', 'flex');
+    });
+
+    $('#addLibro').click(function (e) { 
+        if(valLibro()){
+            let nuevoLibro = {
+                nombre : $('#txtNombreLibro').val(),
+                autor : $('#txtAutorLibro').val(),
+                año : parseInt($('#txtAnhoLibro').val()),
+                ventas : `${parseInt($('#txtCopiasLibro').val())} millones`
+            }
+            librosRecuperar.push(nuevoLibro);
+            localStorage.setItem('biblioteca', JSON.stringify(librosRecuperar));
+            actualizarLibros();
+        }        
+    });
+
+    $(document).on('click', '.eliminarAdminLibro', function() { 
+        let indiceLibro = $(this).closest('p').index();
+        let librosRecuperar = JSON.parse(localStorage.getItem('biblioteca')) || [];
+        librosRecuperar.splice(indiceLibro, 1);
+        localStorage.setItem('biblioteca', JSON.stringify(librosRecuperar));
+        location.reload();
+    });
+
+    function actualizarLibros() {  
+        $('.libros').empty();
+        librosRecuperar.sort(((a, b) => b.año - a.año));
+        librosRecuperar.forEach(libro => {
+            $('.libros').append(`<div class="librosContainer" style="margin: 95px">
+            <h3>${libro.nombre}</h3> <p>${libro.autor}</p> 
+            <small>${libro.año} - Nº Venta: ${libro.ventas}</small>
+            <div style="margin-top : 25px"><button class="addPrestamo">Agregar al préstamo</button><button class="eliminarAdminLibro" style="display: none; margin-top : 5px;">Eliminar de la Cesta</button></div>
+            </div>`);
+        });
+    }
 });

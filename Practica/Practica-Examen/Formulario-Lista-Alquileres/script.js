@@ -45,6 +45,8 @@ function validarAcceso() {
   return usuarioValido;
 }
 
+//Eventos
+
 //botones
 
 botonAcceso.addEventListener("click", function () {
@@ -125,11 +127,8 @@ function validarEmail() {
 }
 function validarNuevoUsuario(e) {
   document.getElementById("errores").innerHTML = "";
-  document.getElementById("errores").style.display = "none";
   if (validarNombre() && validarDni() && validarEmail()) {
     agregarUsuario();
-
-     document.getElementById("errores").innerHTML = "";
   } else {
     document.getElementById("errores").style.display = "block";
 
@@ -154,21 +153,26 @@ function calcularPrecio(producto, dias) {
   return precioBase * dias;
 }
 
+
+function usuarioExiste(nombre, dni, email){
+	  // Verifico si el usuario ya existe
+  let existe = usuariosScript.find(function (usuario) {
+    return (
+      nombre === usuario.nombre.toLowerCase() &&
+      dni === usuario.dni.toLowerCase() &&
+      email === usuario.email.toLowerCase()
+    );
+  });
+  
+  return existe !== undefined;
+}
+
 function agregarUsuario() {
   let nombreIngresado = nombreNuevoUsuario.value.trim().toLowerCase();
   let dniIngresado = dniNuevoSolicitante.value.trim().toLowerCase();
   let emailIngresado = emailNuevoSolicitante.value.trim().toLowerCase();
 
-  // Verifico si el usuario ya existe
-  let usuarioExistente = usuariosScript.find(function (usuario) {
-    return (
-      nombreIngresado === usuario.nombre.toLowerCase() &&
-      dniIngresado === usuario.dni.toLowerCase() &&
-      emailIngresado === usuario.email.toLowerCase()
-    );
-  });
-
-  if (usuarioExistente) {
+  if (usuarioExiste(nombreIngresado, dniIngresado, emailIngresado)) {
     document.getElementById("errores").innerHTML +=
       "Este usuario ya existe<br>";
   } else {

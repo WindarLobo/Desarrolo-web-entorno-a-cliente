@@ -33,7 +33,8 @@ const ventasSection = document.getElementById("ventas");
 const productosSection = document.getElementById("productos");
 
 // Mensaje de error
-const errores = document.getElementById("errores");
+const erroresUsuario = document.getElementById("erroresUsuario");
+const erroresProducto = document.getElementById("erroresProducto");
 
 // almacenamiento  local
 let usuariosScript = JSON.parse(localStorage.getItem("usuariosScript")) || [];
@@ -66,8 +67,6 @@ btnRegistro.addEventListener("click", function () {
 btnRegistroDeProducto.addEventListener("click", function (e) {
   registrarProducto();
   e.preventDefault();
-  registroForm.reset();
-  registroSection.style.display = "none";
 });
 btnAcceso.addEventListener("click", function () {
   var usuarioValido = validarAcceso();
@@ -118,14 +117,14 @@ bntcerrarSesion.addEventListener("click", function (event) {
 //Validaciones
 
 function validarAcceso() {
-  errores.innerHTML = "";
+  erroresUsuario.innerHTML = "";
   let usuarioValido = null;
   // Verificar si los campos están vacíos
   if (
     nombreUsuarioExistente.value === "" ||
     contraseñaUsuarioExistente.value === ""
   ) {
-    errores.innerHTML = "Por favor, complete todos los campos.";
+    erroresUsuario.innerHTML = "Por favor, complete todos los campos.";
     return null; // Devuelve null para indicar que no se puede validar el acceso
   }
   for (let i = 0; i < usuariosScript.length; i++) {
@@ -139,7 +138,7 @@ function validarAcceso() {
   }
   // Mostrar mensaje de error si no se encontró un usuario válido
   if (usuarioValido === null) {
-    errores.innerHTML = "El usuario o la contraseña son incorrectos.";
+    erroresUsuario.innerHTML = "El usuario o la contraseña son incorrectos.";
   }
 
   return usuarioValido;
@@ -148,11 +147,11 @@ function validarAcceso() {
 function validarNombre() {
   let nombre = nombreNuevoUsuario.value.trim();
   if (nombre.includes(" ")) {
-    errores.innerHTML += "Este campo no puede contener espacios <br>";
+    erroresUsuario.innerHTML += "Este campo no puede contener espacios <br>";
 
     return false;
   } else if (nombre === "") {
-    errores.innerHTML += "Este campo nombre es obligatorio <br>";
+    erroresUsuario.innerHTML += "Este campo nombre es obligatorio <br>";
 
     return false;
   } else {
@@ -161,7 +160,7 @@ function validarNombre() {
 }
 function validarContraseña() {
   if (contraseñaNueva1.value != contraseñaNueva2.value) {
-    errores.innerHTML +=
+    erroresUsuario.innerHTML +=
       "<br> La contraseña no coinciden. Por favor, vuelva a intentarlo.";
 
     return false;
@@ -169,7 +168,7 @@ function validarContraseña() {
   // Verifico si la longitud de la contraseña es menor que 6 caracteres.
   if (contraseñaNueva1.value.length < 6) {
     // Mostrar un mensaje de error.
-    errores.innerHTML +=
+    erroresUsuario.innerHTML +=
       "<br> La contraseña deber contener al menos 6 caracteres.";
     return false;
   }
@@ -179,7 +178,7 @@ function validarContraseña() {
 function validarNombreProducto() {
   const nombreInput = String(nombreProducto.value);
   if (nombreInput == "") {
-    errores.innerHTML += "<br>El nombre del producto es obligatorio.";
+    erroresProducto.innerHTML += "<br>El nombre del producto es obligatorio.";
     return false;
   }
   return true;
@@ -188,18 +187,17 @@ function validarNombreProducto() {
 function validarPrecioProducto() {
   const precioInput = Number(precioProducto.value);
   if (isNaN(precioInput) || precioInput <= 0) {
-    errores.innerHTML += "<br>Por favor, ingrese un precio válido.";
+    erroresProducto.innerHTML += "<br>Por favor, ingrese un precio válido.";
     return false;
   }
   return true;
 }
 function validarNuevoUsuario(e) {
-  errores.innerHTML = "";
-  errores.style.display = "none";
+  erroresUsuario.innerHTML = "";
   if (validarNombre() && validarContraseña()) {
     agregarUsuario();
   } else {
-    errores.style.display = "block";
+    erroresUsuario.style.display = "block";
     e.preventDefault();
   }
 }
@@ -215,7 +213,7 @@ function agregarUsuario() {
   });
 
   if (usuarioExistente) {
-    errores.innerHTML += "Este usuario ya existe<br>";
+    erroresUsuario.innerHTML += "Este usuario ya existe<br>";
   } else {
     // Agrego nuevo usuario con lista de productos vacía
     let nuevoUsuario = {
@@ -236,6 +234,8 @@ function registrarProducto() {
   const nombreValor = nombreProducto.value.trim();
   const precioValor = precioProducto.value.trim();
   const descripcionValor = descripcionProducto.value.trim();
+
+  erroresProducto.innerHTML = "";
 
   if (!validarNombreProducto()) {
     return;
@@ -266,8 +266,13 @@ function registrarProducto() {
   // Guardo la lista actualizada de productos en el productos local
   localStorage.setItem("productos", JSON.stringify(productos));
 
+  registroForm.reset();
+  registroSection.style.display = "none";
+
   // Llamo a la función para mostrar los productos en la tabla
   mostrarProductos();
+  
+  
 }
 
 function mostrarProductos() {
@@ -322,7 +327,7 @@ function mostrarCesta() {
       let ventasLista = document.getElementById("ventasLista");
       ventasLista.innerHTML = "";
       ventasLista.innerHTML +=
-        "<th>NOMBRE</th><th>PRECIO</th><th>CANTIDAD</th><th>PRECIO TOTAL</th><th>DESCRIPCION</th></tr>";
+        "<th>NOMBRE</th><th>PRECIO</th><th>CANTIDAD</th><th>PRECIO TOTAL</th><th>DESCRIPCION</th><th>TYPE</th></tr>";
       let precioTotal = 0;
       let cantidadProductos = 0;
       let productosEnCesta = {};
@@ -331,11 +336,13 @@ function mostrarCesta() {
         let nombreProducto = producto.nombre;
         let precioProducto = parseFloat(producto.precio);
 
-        // Incremento la cantidad si el producto ya está en la cesta
+        // Si la cantidad es mayor que cero, agregar el producto a la cesta
+
+        // Incrementar la cantidad si el producto ya está en la cesta
         if (productosEnCesta.hasOwnProperty(nombreProducto)) {
           productosEnCesta[nombreProducto].cantidad++;
         } else {
-          // Agrego el producto a la cesta
+          // Agregar el producto a la cesta
           productosEnCesta[nombreProducto] = {
             precio: precioProducto,
             cantidad: 1,
@@ -348,6 +355,7 @@ function mostrarCesta() {
       for (let nombreProducto in productosEnCesta) {
         let producto = productosEnCesta[nombreProducto];
         let precioProductoTotal = producto.precio * producto.cantidad;
+
         ventasLista.innerHTML +=
           "<tr><td>" +
           nombreProducto +
@@ -359,7 +367,9 @@ function mostrarCesta() {
           precioProductoTotal.toFixed(2) +
           "€</td><td>" +
           producto.descripcion +
-          "</td></tr>";
+          "</td><td><button id='eliminarCesta'  onclick='eliminarProductoDeCesta(\"" +
+          nombreProducto +
+          "\")'>Eliminar</button></td></tr>";
 
         precioTotal += precioProductoTotal;
         cantidadProductos += producto.cantidad;
@@ -368,5 +378,43 @@ function mostrarCesta() {
       const totalElement = document.getElementById("total-ventas");
       totalElement.textContent = precioTotal.toFixed(2);
     }
+  }
+}
+
+// Después de mostrar la cesta, agrega la funcionalidad para eliminarla
+function eliminarProductoDeCesta(nombreProducto) {
+  let usuarioAutenticado = localStorage.getItem("usuarioAutenticado");
+  if (usuarioAutenticado) {
+    let usuario = usuariosScript.find((u) => u.nombre === usuarioAutenticado);
+    if (usuario) {
+      // Buscar el índice del producto en la lista de productos del usuario
+      const index = usuario.productos.findIndex(
+        (producto) => producto.nombre === nombreProducto
+      );
+      if (index !== -1) {
+        // Eliminar el producto del usuario
+        usuario.productos.splice(index, 1);
+        // Guardar la lista actualizada de usuarios en el almacenamiento local
+        localStorage.setItem("usuariosScript", JSON.stringify(usuariosScript));
+        // Mostrar un mensaje indicando que el producto ha sido eliminado de la cesta
+        alert("El producto ha sido eliminado de la cesta.");
+        // Verificar si la cantidad del producto eliminado es cero
+        // Verificar si la cesta está vacía
+        if (usuario.productos.length === 0) {
+          let ventasLista = document.getElementById("ventasLista");
+          const totalElement = document.getElementById("total-ventas");
+          totalElement.textContent = "0.00"; // Limpiar la cesta
+          ventasLista.innerHTML = ""; // Limpiar la cesta
+        } else {
+          mostrarCesta();
+        }
+      } else {
+        alert("El producto no se encontró en la cesta.");
+      }
+    } else {
+      alert("Usuario no encontrado.");
+    }
+  } else {
+    alert("Debes iniciar sesión para eliminar productos de la cesta.");
   }
 }

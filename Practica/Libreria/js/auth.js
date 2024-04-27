@@ -1,6 +1,17 @@
 $(document).ready(function () {
     let usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
+    function addAdmin() {  
+        let encontrarUsuario = usuariosRegistrados.find(user => user.nombre ===  'Admin');
+        if(!encontrarUsuario){
+            let usuarioporDefecto = { nombre : 'Admin', contrasenha : 'root', admin : true}
+            usuariosRegistrados.push(usuarioporDefecto);
+            localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+        }
+    }
+    
+    addAdmin();
+
     $('#registro').click(function (e) { 
         $('.login').css('display', 'none');
         $('.registro').css('display', 'block');        
@@ -51,7 +62,7 @@ $(document).ready(function () {
     $('#addUsuario').click(function (e) {
         if(valRegisterUsuario()){
             $('#errores').text('');
-            let usuarios = {nombre : $('#txtRegisterUsuario').val(), contrasenha : $('#txtRegisterContrasenha').val(), dni : $('#txtRegisterDNI').val()}
+            let usuarios = {nombre : $('#txtRegisterUsuario').val(), contrasenha : $('#txtRegisterContrasenha').val(), dni : $('#txtRegisterDNI').val(), admin : false}
             usuariosRegistrados.push(usuarios);
             localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
             $('.login').css('display', 'none');
@@ -96,7 +107,7 @@ $(document).ready(function () {
     $('#authUsuario').click(function (e) { 
         if(valLoginUsuario()){
             $('#errores').text('');
-            let usuarioActual = {nombre : $('#txtLoginUsuario').val(), contrasenha : $('#txtLoginContrasenha').val(), cesta : []}
+            let usuarioActual = {nombre : $('#txtLoginUsuario').val(), contrasenha : $('#txtLoginContrasenha').val(), admin : false ,cesta : []}
             localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
             window.location.href = 'libreria.html'
         }
